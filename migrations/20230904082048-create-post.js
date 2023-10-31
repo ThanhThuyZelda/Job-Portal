@@ -1,0 +1,51 @@
+'use strict';
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('Posts', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      headline: {
+        type: Sequelize.TEXT
+      },
+      salary: {
+        type: Sequelize.STRING
+      },
+      gender: {
+        type: Sequelize.STRING
+      },
+      require: {
+        type: Sequelize.TEXT
+      },
+      des: {
+        type: Sequelize.TEXT
+      },
+      address: {
+        type: Sequelize.STRING
+      },
+      positionID: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+      empID: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
+    });
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('Posts');
+  }
+};
