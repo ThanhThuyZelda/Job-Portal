@@ -1,23 +1,21 @@
 import { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import { deleteCity } from 'services/Admin/CityService';
+import { deletePost } from 'services/Employer/PostService';
 
 const ModalConfirm = (props) => {
 
-    const { handleClose, show, dataCityDelete, handleDeleteCityFromModal } = props
+    const { handleClose, show, dataPostDelete } = props
     const confirmDeleate = async () => {
-        let res = await deleteCity(dataCityDelete.id);
+        let res = await deletePost(dataPostDelete.id);
         if (res) {
             toast.success("Xóa thành công!!");
             handleClose();
-            handleDeleteCityFromModal(dataCityDelete);
-
         }
         else {
             toast.error("Có lỗi xảy ra");
         }
-        console.log(">> check res: ", res)
+        console.log(">> check res1: ", res)
     }
 
     return (
@@ -34,7 +32,7 @@ const ModalConfirm = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     <div className='body-add-new'>
-                        Bạn chắc chắn muốn xóa <b className='text-danger'>{dataCityDelete.name}</b> không? Sau khi xóa dữ liệu sẽ không thể khôi phục lại!!!
+                        Bạn chắc chắn muốn xóa <b className='text-danger'>{dataPostDelete.headline}</b> không? Sau khi xóa dữ liệu sẽ không thể khôi phục lại!!!
                     </div>
                 </Modal.Body>
                 <Modal.Footer>

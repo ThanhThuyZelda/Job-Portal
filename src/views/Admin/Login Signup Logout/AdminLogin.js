@@ -40,16 +40,15 @@ const Register = () => {
     }
     else {
       //error
-      if (res && res.status === 401) {
-        toast.error(res.data.message);
-      }
+      // if (res && res.status === 401) {
+      //   toast.error(res.data.message);
+      // }
+      navigate("/auth/login");
     }
-
   }
-
   return (
     <>
-      <Col lg="6" md="8">
+      <Col lg="6" md="8" className="center">
         <Card className="shadow border-0">
           <CardBody className="px-lg-5 py-lg-5">
             <div className="text-center">

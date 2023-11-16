@@ -40,9 +40,10 @@ const Register = () => {
         }
         else {
             //error
-            if (res && res.status === 401) {
-                toast.error(res.data.message);
-            }
+            // if (res && res.status === 401) {
+            //     toast.error(res.data.message);
+            // }
+            navigate("/employer/dang-nhap");
         }
         // console.log("check login: ", res);
     }

@@ -23,8 +23,8 @@ import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
 import EmployerPost from "views/Employer/Post/EmployerPost.js";
 import EmployerCompany from "views/Employer/Company/EmployerCompany.js";
-
-
+import AddNewPost from "views/Employer/Post/AddNewPost.js";
+import Chatbot from "views/Employer/Chatbot/Chatbot.js";
 
 var routes = [
   {
@@ -36,9 +36,16 @@ var routes = [
   },
   {
     path: "/bai-tuyen-dung",
-    name: "Danh sách bài tuyển dụng",
+    name: "Chiến dịch tuyển dụng",
     icon: "ni ni-money-coins",
     component: <EmployerPost />,
+    layout: "/nha-tuyen-dung",
+  },
+  {
+    path: "/bai-dang",
+    name: "Tạo bài đăng",
+    icon: "ni ni-paper-diploma",
+    component: <AddNewPost />,
     layout: "/nha-tuyen-dung",
   },
   // {
@@ -51,25 +58,32 @@ var routes = [
   {
     path: "/cong-ty",
     name: "Thông tin công ty",
-    icon: "ni ni-money-coins",
+    icon: "ni ni-building",
     component: <EmployerCompany />,
     layout: "/nha-tuyen-dung",
   },
 
   {
     path: "/user-profile",
-    name: "User Profile",
+    name: "Thông tin cá nhân",
     icon: "ni ni-single-02 text-yellow",
     component: <Profile />,
     layout: "/nha-tuyen-dung",
   },
   {
-    path: "/tables",
-    name: "Tables",
-    icon: "ni ni-bullet-list-67 text-red",
-    component: <Tables />,
-    layout: "/admin",
+    path: "/chat-bot",
+    name: "Chatbot",
+    icon: "ni ni-single-02 text-yellow",
+    component: <Chatbot />,
+    layout: "/nha-tuyen-dung",
   },
+  // {
+  //   path: "/tables",
+  //   name: "Tables",
+  //   icon: "ni ni-bullet-list-67 text-red",
+  //   component: <Tables />,
+  //   layout: "/admin",
+  // },
 
 ];
 export default routes;

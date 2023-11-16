@@ -24,6 +24,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/scss/argon-dashboard-react.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 
 import AdminLayout from "layouts/Admin.js";
 import EmployerLayout from "layouts/Employer.js";
@@ -40,7 +41,7 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/admin/*" element={<AdminLayout />} />
-      <Route path="/auth/*" element={<AuthLayout />} />
+      <Route path="/auth/login" element={<AuthLayout />} />
 
       <Route path="/nha-tuyen-dung/*" element={<EmployerLayout />} />
       <Route path="/employer/dang-nhap*" element={<AuthEmployerLayout />} />

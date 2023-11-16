@@ -15,26 +15,28 @@ const fetchAllPost = (page) => {
 }
 
 
-const postCreate = (headline, salary, gender, require, des, address, empID) => {
+const postCreate = (headline, salary, gender, require, des, benefit, quantity, address, workform, positionID, empID, status, DeadlineSubmission) => {
     return axios.post('/nha-tuyen-dung/bai-tuyen-dung/them', {
-        headline, salary, gender, require, des, address, empID
+        headline, salary, gender, require, des, benefit, quantity, address, workform, positionID, empID, status, DeadlineSubmission
     })
 }
-// const putUpdateCity = (id, name) => {
-//     return axios.put(`/quan-tri-vien/thanh-pho/${id}`, { name });
-// }
+const fetchEmployerFromSession = () => {
+    return axios.get(`/nha-tuyen-dung/home/NTD`);
+}
 
-// const deleteCity = (id) => {
-//     return axios.delete(`/quan-tri-vien/thanh-pho/${id}`);
-// }
+const fetchDetailPosts = (id) => {
+    return axios.get(`/nha-tuyen-dung/bai-tuyen-dung/${id}`);
+}
 
-// const searchCity = (key) => {
-//     return axios.get(`/quan-tri-vien/thanh-pho/tim-kiem/${key}`);
+const putUpdatePost = (id, headline, salary, gender, require, des, benefit, quantity, address, workform, positionID, empID, status, DeadlineSubmission) => {
+    return axios.put(`/nha-tuyen-dung/bai-tuyen-dung/${id}`, {
+        headline, salary, gender, require, des, benefit, quantity, address, workform, positionID, empID, status, DeadlineSubmission
+    });
+}
 
-// }
-// const allCity = () => {
-//     return axios.get('/quan-tri-vien/thanh-pho-all/');
-// }
+const deletePost = (id) => {
+    return axios.delete(`/nha-tuyen-dung/bai-tuyen-dung/${id}`)
+}
 
 
-export { fetchAllPost, postCreate };
+export { fetchAllPost, postCreate, fetchEmployerFromSession, fetchDetailPosts, deletePost, putUpdatePost };

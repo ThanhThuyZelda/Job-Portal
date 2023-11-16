@@ -11,7 +11,9 @@ axios.interceptors.response.use(function (response) {
 const fetchEmployerFromSession = () => {
     return axios.get(`/nha-tuyen-dung/home/NTD`);
 }
-
+const fetchNameCompany = () => {
+    return axios.get(`/nha-tuyen-dung/home/companyID`);
+}
 
 const putUpdateNTD = (id, fullname, phone, position, img) => {
     const formData = new FormData();
@@ -35,4 +37,4 @@ const putUpdateNTD = (id, fullname, phone, position, img) => {
 
 // }
 
-export { fetchEmployerFromSession, putUpdateNTD };
+export { fetchEmployerFromSession, putUpdateNTD, fetchNameCompany };

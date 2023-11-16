@@ -16,7 +16,7 @@ import Header from "components/Headers/UserHeader";
 import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { ToastContainer, toast } from 'react-toastify';
-import { putUpdateNTD, fetchEmployerFromSession } from "services/Employer/EmployerService.js"
+import { putUpdateNTD, fetchEmployerFromSession, fetchNameCompany } from "services/Employer/EmployerService.js"
 const Profile = () => {
 
   axios.defaults.withCredentials = true;
@@ -29,25 +29,6 @@ const Profile = () => {
   const [id, setID] = useState("");
 
 
-  // useEffect(() => {
-  //   axios.get('http://localhost:8080/nha-tuyen-dung/home/session')
-  //     .then(res => {
-  //       console.log(res);
-  //       if (res.data.loggedIn) {
-  //         setID(res.data.employer.id);
-  //         setFullname(res.data.employer.fullname);
-  //         setPhone(res.data.employer.phone);
-  //         setEmail(res.data.employer.email);
-  //         setPosition(res.data.employer.position);
-  //         setImg(res.data.employer.img);
-  //         setCompany(res.data.employer.company);
-  //       }
-  //       else {
-  //         console.log(res.data.loggedIn)
-  //       }
-  //     })
-  //     .catch(err => console.log(err))
-  // }, [])
 
   axios.defaults.withCredentials = true;
 
@@ -57,18 +38,25 @@ const Profile = () => {
 
   const getNTD = async () => {
     const res = await fetchEmployerFromSession();
-    console.log("check find company: ", res);
-    if (res) {
+    const res2 = await fetchNameCompany();
+    console.log("check find company: ", res, res2);
+    if (res && res2) {
       setID(res.id);
       setFullname(res.fullname);
       setPhone(res.phone);
       setEmail(res.email);
       setPosition(res.position);
       setImg(res.img);
-      setCompany(res.company);
-
+      setCompany(res2.name);
     }
   }
+  // const getNameCompany = async () => {
+  //   const res = await fetchNameCompany();
+  //   console.log("check name company", res);
+  //   // if(res){
+  //   //   setCompany(res.c)
+  //   // }
+  // }
 
 
   const handleEditEmployer = async () => {

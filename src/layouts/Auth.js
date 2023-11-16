@@ -6,6 +6,7 @@ import { Container, Row, Col } from "reactstrap";
 // core components
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import AuthFooter from "components/Footers/AuthFooter.js";
+import AdminLogin from "views/Admin/Login Signup Logout/AdminLogin.js";
 
 import routes from "routes.js";
 
@@ -53,7 +54,9 @@ const Auth = (props) => {
                 </Col>
               </Row>
             </div>
+            <AdminLogin />
           </Container>
+
           <div className="separator separator-bottom separator-skew zindex-100">
             <svg
               xmlns="http://www.w3.org/2000/svg"
