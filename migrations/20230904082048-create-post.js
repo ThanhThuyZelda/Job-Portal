@@ -24,8 +24,17 @@ module.exports = {
       des: {
         type: Sequelize.TEXT
       },
+      benefit: {
+        type: Sequelize.TEXT
+      },
+      quantity: {
+        type: Sequelize.INTEGER,
+      },
       address: {
         type: Sequelize.STRING
+      },
+      workform: {
+        type: Sequelize.TEXT
       },
       positionID: {
         type: Sequelize.INTEGER,
@@ -34,6 +43,14 @@ module.exports = {
       empID: {
         type: Sequelize.INTEGER,
         allowNull: true,
+      },
+      status: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1
+      },
+      DeadlineSubmission: {
+        allowNull: true,
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

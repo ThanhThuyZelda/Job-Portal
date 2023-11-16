@@ -9,9 +9,14 @@ const save = async (req, res) => {
         gender: req.body.gender,
         require: req.body.require,
         des: req.body.des,
+        benefit: req.body.benefit,
+        quantity: req.body.quantity,
         address: req.body.address,
+        workform: req.body.workform,
         positionID: req.body.positionID,
-        empID: req.session.employer.id
+        empID: req.session.employer.id,
+        status: req.body.status,
+        DeadlineSubmission: req.body.DeadlineSubmission,
     }
     await models.Post.create(post).then(result => {
         res.status(201).json({
@@ -41,9 +46,13 @@ const update = async (req, res) => {
         gender: req.body.gender,
         require: req.body.require,
         des: req.body.des,
+        benefit: req.body.benefit,
+        quantity: req.body.quantity,
         address: req.body.address,
+        workform: req.body.workform,
         positionID: req.body.positionID,
-        empID: req.body.empID
+        status: req.body.status,
+        DeadlineSubmission: req.body.DeadlineSubmission,
     }
 
     await models.Post.update(updatePost, { where: { id: id } }).then(result => {

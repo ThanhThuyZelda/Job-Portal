@@ -81,5 +81,30 @@ router.get("/home/NTD", async (req, res) => {
             })
         })
 });
+//8. Get company
+router.get("/home/companyID", async (req, res) => {
+    const cmpID = req.session.employer.companyID;
+
+    await models.Company.findOne({
+        attributes: ['name'],
+        where: {
+            id: cmpID
+        }
+    }).then(result => {
+        if (result) {
+            res.status(200).json(result);
+        }
+        else {
+            res.status(404).json({
+                message: "Not found!"
+            });
+        }
+    }).catch(error => {
+        res.status(500).json({
+            message: "Đã xảy ra lỗi!"
+        })
+    })
+
+})
 
 module.exports = router;

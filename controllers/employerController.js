@@ -95,7 +95,7 @@ const login = async (req, res) => {
                         };
                         req.session.id = employer.id;
                         req.session.companyID = employer.companyID;
-                        console.log(req.session.employer.id);
+                        console.log(req.session.id);
                         res.status(200).json({
                             message: "Authentication successful!",
                             token: token
@@ -216,10 +216,10 @@ const index = async (req, res) => {
 
 }
 // 6. Destroy
-function destroy(req, res) {
+const destroy = async (req, res) => {
     const id = req.params.id;
 
-    models.Employer.destroy({ where: { id: id } }).then(result => {
+    await models.Employer.destroy({ where: { id: id } }).then(result => {
         res.status(200).json({
             message: "Xóa nhà tuyển dụng thành công",
             // jobseeker: result
@@ -232,7 +232,7 @@ function destroy(req, res) {
     });
 }
 //7. Update
-function update(req, res) {
+const update = async (req, res) => {
     const id = req.params.id;
 
     if (typeof req.file === "undefined") {
@@ -252,7 +252,7 @@ function update(req, res) {
     }
 
 
-    models.Employer.update(updateEmployer, { where: { id: id } }).then(result => {
+    await models.Employer.update(updateEmployer, { where: { id: id } }).then(result => {
         res.status(200).json({
             message: "Update successfully! ",
             employer: updateEmployer
@@ -264,6 +264,7 @@ function update(req, res) {
         });
     })
 }
+//8. Get company
 
 
 module.exports = {
