@@ -11,7 +11,8 @@ axios.interceptors.response.use(function (response) {
 
 // service City
 const fetchAllPost = (page) => {
-    return axios.get(`/nha-tuyen-dung/bai-tuyen-dung/show/hienthi/?page=${page}`);
+    return axios.get(`/nha-tuyen-dung/bai-tuyen-dung/show/hienthi?page=${page}`);
+    // return axios.get(`/nha-tuyen-dung/bai-tuyen-dung/show/hienthi`);
 }
 
 

@@ -24,8 +24,7 @@ import Icons from "views/examples/Icons.js";
 import EmployerPost from "views/Employer/Post/EmployerPost.js";
 import EmployerCompany from "views/Employer/Company/EmployerCompany.js";
 import AddNewPost from "views/Employer/Post/AddNewPost.js";
-import Chatbot from "views/Employer/Chatbot/Chatbot.js";
-
+import Chatbot1 from "views/Employer/Chatbot1/Chatbot.js";
 var routes = [
   {
     path: "/index",
@@ -70,13 +69,20 @@ var routes = [
     component: <Profile />,
     layout: "/nha-tuyen-dung",
   },
-  {
-    path: "/chat-bot",
-    name: "Chatbot",
-    icon: "ni ni-single-02 text-yellow",
-    component: <Chatbot />,
-    layout: "/nha-tuyen-dung",
-  },
+  // {
+  //   path: "/chat-bot",
+  //   name: "Chatbot",
+  //   icon: "ni ni-single-02 text-yellow",
+  //   component: <Chatbot />,
+  //   layout: "/nha-tuyen-dung",
+  // },
+  // {
+  //   path: "/chat-bot1",
+  //   name: "Chatbot1",
+  //   icon: "ni ni-single-02 text-yellow",
+  //   component: <Chatbot1 />,
+  //   layout: "/nha-tuyen-dung",
+  // },
   // {
   //   path: "/tables",
   //   name: "Tables",
