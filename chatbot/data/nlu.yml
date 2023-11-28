@@ -1,0 +1,149 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hello
+    - hi
+    - hey
+    - Xin chào
+    - Chào anh
+    - Chào chị
+    - Chào bạn
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+
+    
+
+# - intent: affirm
+#   examples: |
+#     - yes
+#     - y
+#     - indeed
+#     - of course
+#     - that sounds good
+#     - correct
+
+# - intent: deny
+#   examples: |
+#     - no
+#     - n
+#     - never
+#     - I don't think so
+#     - don't like that
+#     - no way
+#     - not really
+
+# - intent: mood_great
+#   examples: |
+#     - perfect
+#     - great
+#     - amazing
+#     - feeling like a king
+#     - wonderful
+#     - I am feeling very good
+#     - I am great
+#     - I am amazing
+#     - I am going to save the world
+#     - super stoked
+#     - extremely good
+#     - so so perfect
+#     - so good
+#     - so perfect
+
+# - intent: mood_unhappy
+#   examples: |
+#     - my day was horrible
+#     - I am sad
+#     - I don't feel very well
+#     - I am disappointed
+#     - super sad
+#     - I'm so sad
+#     - sad
+#     - very sad
+#     - unhappy
+#     - not good
+#     - not very good
+#     - extremly sad
+#     - so saad
+#     - so sad
+
+# - intent: bot_challenge
+#   examples: |
+#     - are you a bot?
+#     - are you a human?
+#     - am I talking to a bot?
+#     - am I talking to a human?
+
+#Muc luong cao nhat
+- intent: work_high_salary
+  examples: |
+    - Công việc lương cao nhất
+    - Cho em hỏi, công việc nào lương cao nhất ạ?
+    - Công việc lương cao nhất hiện nay là gì?
+    - Công việc có lương cao nhất?
+    - Công việc nào lương cao nhất?
+    - Công việc nào lương cao nhất?
+    - Cho mình hỏi công việc nào lương cao nhất hiện nay?
+    - Hiện nay, công việc nào có lương cao nhất?
+    - Công việc có mức lương cao nhất hiện nay?
+    - Trong ngành IT, công việc nào đang có mức lương cao nhất?
+    - Công việc nào đang có mức lương cao nhất?
+
+# Cong viec de xin nhat
+- intent: work_easy_apply
+  examples: |
+    - Công việc dễ xin nhất
+    - Công việc nào dễ xin nhất?
+    - Công việc dễ xin nhất ?
+    - Trong lĩnh vực công nghệ thông tin, có công việc nào thường dễ dàng xin vào không?
+    - Có công việc nào dễ xin không?
+
+# Cong ty nhieu uu dai
+- intent: company_endow
+  examples: |
+    - Công ty có nhiều ưu đãi nhất
+    - Công ty nào ưu đãi nhiều nhất?
+    - Ở Việt Nam, công ty nào có nhiều ưu đã nhất?
+    - Công ty nào có nhiều đãi ngộ nhất?
+    - Công ty CNTT nào ở Việt Nam có nhiều đãi ngộ nhất ?
+    - Công ty có nhiều ưu đãi nhất?
+
+# Cong ty co luong cao nhat
+- intent: company_high_salary
+  examples: |
+    - Công ty có lương cao nhất
+    - Cho em hỏi, công ty phần mềm nào trả lương cao nhất ạ?
+    - Công ty có lương cao nhất hiện nay là gì?
+    - Công ty có lương cao nhất?
+    - Công ty phần mềm trả lương cao nhất?
+    - Công ty nào trả lương cao nhất?
+    - Công ty phần mềm có lương cao nhất?
+    - Cho mình hỏi công ty phần nào lương cao nhất hiện nay?
+    - Hiện nay, công ty nào trả lương cao nhất?
+    - Công ty có mức lương cao nhất hiện nay?
+    - Trong ngành IT, công ty nào đang có mức lương cao nhất?
+    - Công ty nào đang có mức lương cao nhất?
+
+
+- intent: thanks
+  examples: |
+    - Em cảm ơn nhiều ạ
+    - Em cảm ơn
+    - Cảm ơn
+    - Cảm ơn bạn đã hỗ trợ 
+
+- intent: goodbye
+  examples: |
+    - Tạm biệt bạn.
+    - bye
+    - goodbye

@@ -1,0 +1,95 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  # - affirm
+  # - deny
+  # - mood_great
+  # - mood_unhappy
+  # - bot_challenge
+  - work_high_salary
+  - thanks
+  - work_easy_apply
+  - company_endow
+  - company_high_salary
+entities: 
+  - name
+
+
+slots:
+  name:
+    type: any
+    mappings:
+    - type: from_entity
+      entity: name 
+
+
+responses:
+  #Chao
+  utter_greeting:
+  - text: "Chào bạn, mình là chatbot AI! Bạn muốn chatbot AI hỗ trợ bạn về điều gì ạ?
+       Công việc lương cao nhất | Công việc dễ xin nhất | Công ty nhiều ưu đãi nhất | Công ty có lương cao nhất"
+  # Cam on
+  utter_thanks:
+  - text: Rất vui lòng hỗ trợ bạn nhé!
+  # Tam biet
+  utter_goodbye:
+  - text: "Bye"
+  - text: "Good bye, chúc bạn một ngày tốt lành!!!"
+
+  # Cong viec luong cao
+  utter_work_high_salary1:
+  - text: "Thông thường, mức lương trong lĩnh vực IT ở Việt Nam có thể thay đổi 
+          tùy thuộc vào nhiều yếu tố như kinh nghiệm, kỹ năng, vị trí công việc, và công ty.
+          Dưới đây là một số vị trí phổ biến thường được đánh giá cao về mức lương:"
+  utter_work_high_salary2:
+  - text: "- Software Engineer, Security Engineer"
+  utter_work_high_salary3:
+  - text: "- AI Engineer, Blockchain Developer"
+  utter_work_high_salary4:
+  - text: "- IT Project Manager, UX/UI Designer"
+  utter_work_high_salary5:
+  - text: "- Data Analyst/Scientist, System Administrator"
+  utter_work_high_salary6:
+  - text: "- Mobile App Developer, Cloud Services Manager"
+
+
+  #Cong viec de xin
+  utter_work_easy_apply1:
+  - text: "Dễ xin việc hay không thường phụ thuộc vào nhiều yếu tố, bao gồm kinh nghiệm,
+           kỹ năng, vị trí công việc, và cả sự cạnh tranh trong thị trường lao động. Bạn có thể tham khảo một số công việc dưới đây:"
+  utter_work_easy_apply2:
+  - text: "- QA/QC Tester, Data Analyst"
+  utter_work_easy_apply3:
+  - text: "- UI/UX Designer"
+  utter_work_easy_apply4:
+  - text: "- Intern/Fresher Website, Mobile"
+
+#Cong ty co uu dai nhieu nhat
+  utter_company_endow1:
+  - text: "Không có một công ty IT cụ thể nào có thể được xác định là có Nhiều Ưu Đãi Nhất mà phù hợp với tất cả mọi người, 
+          vì mỗi người có những yêu cầu và ưu tiên khác nhau về môi trường làm việc và phúc lợi. 
+          Dưới đây là một số công ty IT ở Việt Nam được biết đến với các chính sách nhân sự và ưu đãi hấp dẫn:"
+  utter_company_endow2:
+  - text: "FPT Software"
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/FPT_Software_logo.svg/1024px-FPT_Software_logo.svg.png"
+  utter_company_endow3:
+  - text: "Tiki Corporation"
+    image: "https://upload.wikimedia.org/wikipedia/commons/6/64/Logo_Tiki.png"
+  utter_company_endow4:
+  - text: "VinGroup"
+    image: "https://upload.wikimedia.org/wikipedia/vi/thumb/9/98/Vingroup_logo.svg/1200px-Vingroup_logo.svg.png"
+  utter_company_endow5:
+  - text: "NashTech"
+    image: "https://vnn-imgs-f.vgcloud.vn/2020/01/16/11/nashtech-doi-nhan-dien-thuong-hieu.jpg"
+
+# Cong ty co luong cao nhat
+  utter_company_high_salary:
+  - text: "Thu nhập trung bình tại FPT Software là trên 20 triệu đồng/tháng, khá cao so với mặt bằng chung mức lương trong ngành IT"
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/FPT_Software_logo.svg/1024px-FPT_Software_logo.svg.png"
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
