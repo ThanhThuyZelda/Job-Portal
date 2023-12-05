@@ -1,6 +1,7 @@
 const express = require('express');
 const employerController = require('../controllers/employerController.js');
 const postsController = require('../controllers/postsController.js');
+const homepageController = require('../controllers/homepageController.js');
 const checkAuthMiddleware = require('../middleware/check-auth.js');
 const companyController = require("../controllers/companyController");
 const models = require('../models');
@@ -27,8 +28,14 @@ router.put("/:id", employerController.upload, employerController.update);
 router.post("/bai-tuyen-dung/them", postsController.save);
 router.put("/bai-tuyen-dung/:id", postsController.update);
 router.delete("/bai-tuyen-dung/:id", postsController.destroy);
-router.get("/bai-tuyen-dung/show/hienthi", postsController.show);
+router.get("/bai-tuyen-dung/show/hienthi/", postsController.show);
 router.get("/bai-tuyen-dung/:id", postsController.index);
+
+//Homepage
+router.get("/trang-chu/bai-tuyen-dung/", homepageController.clientFetchAllPost);
+router.get("/trang-chu/cong-ty-post/:id", homepageController.fetchOtherPostCompany);
+router.get("/trang-chu/tim-kiem-post", homepageController.searchPost);
+
 
 router.get("/home/session", (req, res) => {
     if (req.session.employer) {
@@ -43,9 +50,11 @@ router.get("/home/session", (req, res) => {
 });
 
 router.get("/home/companyOfEmployer", async (req, res) => {
-    const ntd = req.session.companyID;
-
+    const ntd = req.session.employer.companyID;
+    console.log("check id compnay: ", ntd);
     await models.Company.findOne({
+        attributes: ['id', 'name', 'logo', 'address', 'worktime', 'country', 'description', 'website', 'scale', 'skill', 'skillID', 'logo'],
+        // attributes: ['Companies.*'],
         where: { id: ntd }
     }).then(result => {
         if (result) {
@@ -58,7 +67,8 @@ router.get("/home/companyOfEmployer", async (req, res) => {
         }
     }).catch(error => {
         res.status(500).json({
-            message: "Đã xảy ra lỗi!"
+            message: "Đã xảy ra lỗi1!",
+            // ntd: ntd
         })
     })
 });

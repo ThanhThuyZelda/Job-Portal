@@ -10,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // Post.belongsTo(models.Employer, { foreignKey: 'empID' });
+      Post.belongsTo(models.Company, { foreignKey: 'compID' });
+      Post.belongsTo(models.City, { foreignKey: 'skillID' });
     }
   }
   Post.init({
@@ -24,7 +26,9 @@ module.exports = (sequelize, DataTypes) => {
     address: DataTypes.STRING,
     workform: DataTypes.TEXT,
     positionID: DataTypes.INTEGER,
+    skillID: DataTypes.INTEGER,
     empID: DataTypes.INTEGER,
+    compID: DataTypes.INTEGER,
     status: DataTypes.INTEGER,
     DeadlineSubmission: DataTypes.DATE,
   }, {

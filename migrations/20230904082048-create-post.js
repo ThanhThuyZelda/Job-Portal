@@ -36,11 +36,15 @@ module.exports = {
       workform: {
         type: Sequelize.TEXT
       },
-      positionID: {
+      skillID: {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
       empID: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+      compID: {
         type: Sequelize.INTEGER,
         allowNull: true,
       },

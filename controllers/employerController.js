@@ -5,7 +5,7 @@ const path = require('path');
 const multer = require('multer');
 //1. Sign Ups
 const signUp = async (req, res) => {
-    await models.Company.create({ name: req.body.company, address: req.body.address, website: req.body.website })
+    const company = await models.Company.create({ name: req.body.company, address: req.body.address, website: req.body.website })
     await models.Employer.findOne({ where: { email: req.body.email } }).then(result => {
         if (result) {
             res.status(409).json({
@@ -23,11 +23,11 @@ const signUp = async (req, res) => {
                         image = req.file.filename
                     }
 
-                    companyID = await models.Company.findOne({
-                        where: {
-                            name: req.body.company
-                        }
-                    })
+                    // company = await models.Company.findOne({
+                    //     where: {
+                    //         name: req.body.company
+                    //     }
+                    // })
 
 
                     const employer = {
@@ -38,7 +38,7 @@ const signUp = async (req, res) => {
                         position: req.body.position,
                         company: req.body.company,
                         img: image,
-                        companyID: companyID.id,
+                        companyID: company.id,
                     };
 
                     await models.Employer.create(employer).then(result => {

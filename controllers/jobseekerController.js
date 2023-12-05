@@ -84,6 +84,16 @@ const login = async (req, res) => {
                         const token = jwt.sign({
                             email: jobseeker.email
                         }, process.env.JWT_KEY, (err, token) => {
+                            req.session.jobseeker = {
+                                id: jobseeker.id,
+                                email: jobseeker.email,
+                                fullname: jobseeker.fullname,
+                                img: jobseeker.img
+                            };
+                            // req.session.id = jobseeker.id;
+                            console.log(req.session.jobseeker.id);
+
+
                             res.status(200).json({
                                 message: "Authentication successfully!",
                                 token: token

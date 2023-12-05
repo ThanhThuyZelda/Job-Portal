@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Employer.hasOne(sequelize.define('Company'));
+      Employer.hasMany(sequelize.define('Post'));
     }
   }
   Employer.init({
