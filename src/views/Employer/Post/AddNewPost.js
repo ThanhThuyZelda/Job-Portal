@@ -16,7 +16,7 @@ import Header from "components/Headers/EmployerHeader";
 import moment from 'moment';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { postCreate, fetchEmployerFromSession } from "services/Employer/PostService.js"
+import { postCreate, fetchEmployerFromSession, fetchAllCity } from "services/Employer/PostService.js"
 
 const AddNewPost = (props) => {
     const [headline, setHeadline] = useState("");
@@ -30,6 +30,9 @@ const AddNewPost = (props) => {
     const [workform, setWorkform] = useState("");
     const [positionID, setPositionID] = useState("");
     const [empID, setEmpID] = useState("");
+    const [skillID, setSkillID] = useState("");
+    const [compID, setCompID] = useState("");
+    const [cities, setCities] = useState([]);
     const [DeadlineSubmission, setDeadlineSubmission] = useState(() => {
         const currentDate = moment();
         const futureDate = currentDate.add(30, 'days');
@@ -39,6 +42,7 @@ const AddNewPost = (props) => {
 
     useEffect(() => {
         getNTD();
+        getCities();
     }, []);
     const getNTD = async () => {
         const res = await fetchEmployerFromSession();
@@ -46,8 +50,19 @@ const AddNewPost = (props) => {
             setEmpID(res.fullname);
         }
     }
+
+    // display list city
+    const getCities = async () => {
+        let res = await fetchAllCity();
+        // console.log(">>> Check new city:", res.data.rows);
+        if (res && res.data.rows) {
+            setCities(res.data.rows);
+        }
+    }
+
+
     const handleSavePost = async () => {
-        let res = await postCreate(headline, salary, gender, require, des, benefit, quantity, address, workform, positionID, empID, status, DeadlineSubmission);
+        let res = await postCreate(headline, salary, gender, require, des, benefit, quantity, address, workform, skillID, empID, compID, status, DeadlineSubmission);
         console.log(">>check res: ", res);
         if (res && res.post.id) {
             //success
@@ -63,6 +78,8 @@ const AddNewPost = (props) => {
             setWorkform('');
             setPositionID('');
             setEmpID('');
+            setCompID('');
+            setSkillID('');
             setDeadlineSubmission('');
             setStatus('');
             toast.success("Bài tuyển dụng đã được tạo thành công!!!")
@@ -107,7 +124,7 @@ const AddNewPost = (props) => {
                                 <Input
                                     className="form-control-alternative"
                                     type="text"
-                                    placeholder="10Tr/ 1000USD"
+                                    placeholder="10 triệu/ 1000 USD/ Thỏa thuận"
                                     value={salary}
                                     onChange={(event) => setSalary(event.target.value)}
                                 />
@@ -141,25 +158,45 @@ const AddNewPost = (props) => {
                         <Col md="3">
                             <Label>Hình thức làm việc</Label>
                             <FormGroup>
-                                <Input
+                                {/* <Input
                                     className="form-control-alternative"
                                     type="text"
                                     placeholder="Fulltime/Part-time"
                                     value={workform}
                                     onChange={(event) => setWorkform(event.target.value)}
-                                />
+                                /> */}
+                                <select
+                                    id="exampleSelect"
+                                    value={workform}
+                                    onChange={(event) => setWorkform(event.target.value)}
+                                    className="form-control-alternative"
+                                >
+                                    <option >Chọn hình thức làm việc</option>
+                                    <option value="Fulltime">Fulltime</option>
+                                    <option value="Parttime">Parttime</option>
+
+                                </select>
                             </FormGroup>
                         </Col>
                         <Col md="4">
-                            <Label>Vị trí</Label>
+                            <Label>Khu vực làm việc</Label>
                             <FormGroup>
-                                <Input
+                                <select
+                                    id="exampleSelect"
+                                    // value={skillID}
+                                    onChange={(event) => setSkillID(event.target.value)}
                                     className="form-control-alternative"
-                                    type="text"
-                                    placeholder="Fresher"
-                                    value={positionID}
-                                    onChange={(event) => setPositionID(event.target.value)}
-                                />
+                                >
+                                    <option value=""> --- Chọn khu vực làm việc ---</option>
+                                    {cities.map((city) => (
+
+                                        <option key={city.id} value={city.id}>
+                                            {city.name}
+                                        </option>
+                                    ))}
+
+                                </select>
+
                             </FormGroup>
                         </Col>
                         <Col md="3">
@@ -221,7 +258,6 @@ const AddNewPost = (props) => {
                             />  Tạm ẩn
                         </Col>
                     </Row>
-
                     <br></br>
                     <Label>Yêu cầu công việc</Label>
                     <Row >

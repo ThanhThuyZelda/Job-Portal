@@ -122,7 +122,7 @@ const Chatbot = () => {
                 <ul class="chatbox" id="messageArea">
                     <li class="chat incoming">
                         <span class="material-symbols-outlined"><i class="fa-solid fa-robot"></i></span>
-                        <p>Chào bạn, bạn cần Chatbot tư vấn gì ạ?</p>
+                        <p>Chào bạn, để bắt đầu câu chuyện bạn nhập "Xin chào" giúp mình nhé?</p>
                     </li>
 
 

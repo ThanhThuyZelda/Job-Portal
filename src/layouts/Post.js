@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 const Post = () => {
-
+    const location = useLocation();
 
     return (
         <>
@@ -15,33 +16,23 @@ const Post = () => {
                                 <div className="small-section-tittle">
                                     <h4>Mô tả chi tiết công việc</h4>
                                 </div>
-                                <p>It is a long established fact that a reader will beff distracted by vbthe creadable content of a page when looking at its layout. The pointf of using Lorem Ipsum is that it has ahf mcore or-lgess normal distribution of letters, as opposed to using, Content here content here making it look like readable.</p>
+                                <p dangerouslySetInnerHTML={{ __html: location.state.des }}>
+                                    {/* <span dangerouslySetInnerHTML={{ __html: location.state.require }}></span> */}
+                                </p>
                             </div>
                             <div className="post-details2  mb-50">
                                 {/* <!-- Small Section Tittle --> */}
                                 <div className="small-section-tittle">
                                     <h4>Yêu cầu công việc</h4>
                                 </div>
-                                <ul>
-                                    <li>System Software Development</li>
-                                    <li>Mobile Applicationin iOS/Android/Tizen or other platform</li>
-                                    <li>Research and code , libraries, APIs and frameworks</li>
-                                    <li>Strong knowledge on software development life cycle</li>
-                                    <li>Strong problem solving and debugging skills</li>
-                                </ul>
+                                <p dangerouslySetInnerHTML={{ __html: location.state.require }}></p>
                             </div>
                             <div className="post-details2  mb-50">
                                 {/* <!-- Small Section Tittle --> */}
                                 <div className="small-section-tittle">
                                     <h4>Quyền lợi</h4>
                                 </div>
-                                <ul>
-                                    <li>3 or more years of professional design experience</li>
-                                    <li>Direct response email experience</li>
-                                    <li>Ecommerce website design experience</li>
-                                    <li>Familiarity with mobile and web apps preferred</li>
-                                    <li>Experience using Invision a plus</li>
-                                </ul>
+                                <p dangerouslySetInnerHTML={{ __html: location.state.benefit }}></p>
                             </div>
                         </div>
 
@@ -54,16 +45,37 @@ const Post = () => {
                                 <h4>Job Overview</h4>
                             </div>
                             <ul>
-                                <li>Posted date : <span>12 Aug 2019</span></li>
-                                <li>Location : <span>New York</span></li>
-                                <li>Vacancy : <span>02</span></li>
-                                <li>Job nature : <span>Full time</span></li>
-                                <li>Salary :  <span>$7,800 yearly</span></li>
-                                <li>Application date : <span>12 Sep 2020</span></li>
+                                <li>Ngày đăng : <span>
+                                    {location.state.createdAt && (
+                                        <>
+                                            {new Date(location.state.createdAt).toLocaleDateString("en-GB", {
+                                                day: "numeric",
+                                                month: "numeric",
+                                                year: "numeric",
+                                            })}
+                                        </>
+                                    )}
+                                </span></li>
+                                <li>Địa chỉ làm việc : <span>{location.state.address}</span></li>
+                                <li>Số lượng : <span>{location.state.quantity}</span></li>
+                                <li>Hình thức làm việc : <span>{location.state.workform}</span></li>
+                                <li>Mức lương :  <span>{location.state.salary}</span></li>
+                                <li>Thời gian làm việc : <span>{location.state.Company.worktime}</span></li>
+                                <li>Hạn nộp hồ sơ : <span>
+                                    {location.state.DeadlineSubmission && (
+                                        <>
+                                            {new Date(location.state.DeadlineSubmission).toLocaleDateString("en-GB", {
+                                                day: "numeric",
+                                                month: "numeric",
+                                                year: "numeric",
+                                            })}
+                                        </>
+                                    )}
+                                </span></li>
                             </ul>
-                            <div className="apply-btn2">
-                                <a href="#" className="btn">Apply Now</a>
-                            </div>
+                            {/* <div className="apply-btn2">
+                                <button href="#" className="btn">Apply Now</button>
+                            </div> */}
                         </div>
 
                     </div>

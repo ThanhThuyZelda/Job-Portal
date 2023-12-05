@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { putUpdatePost } from 'services/Employer/PostService.js';
+import { putUpdatePost, fetchAllCity } from 'services/Employer/PostService.js';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { head } from 'lodash';
@@ -31,15 +31,23 @@ const ModalEditCity = (props) => {
     const [quantity, setQuantity] = useState("");
     const [address, setAddress] = useState("");
     const [workform, setWorkform] = useState("");
-    const [positionID, setPositionID] = useState("");
     const [empID, setEmpID] = useState("");
+    const [compID, setCompID] = useState("");
     const [DeadlineSubmission, setDeadlineSubmission] = useState("");
     const [status, setStatus] = useState('');
+    const [cities, setCities] = useState([]);
+    const [skillID, setSkillID] = useState("");
 
-
+    // display list city
+    const getCities = async () => {
+        let res = await fetchAllCity();
+        // console.log(">>> Check new city:", res.data.rows);
+        if (res && res.data.rows) {
+            setCities(res.data.rows);
+        }
+    }
     const handleEditCity = async () => {
-        let res = await putUpdatePost(dataPostEdit.id, headline, salary, gender,
-            require, des, benefit, quantity, address, workform, positionID, empID, status, DeadlineSubmission)
+        let res = await putUpdatePost(dataPostEdit.id, headline, salary, gender, require, des, benefit, quantity, address, workform, skillID, empID, compID, status, DeadlineSubmission)
 
         console.log("check:", res);
         if (res) {
@@ -68,9 +76,10 @@ const ModalEditCity = (props) => {
             setQuantity(dataPostEdit.quantity);
             setAddress(dataPostEdit.address);
             setWorkform(dataPostEdit.workform);
-            setPositionID(dataPostEdit.positionID);
             setDeadlineSubmission(dataPostEdit.DeadlineSubmission);
             setStatus(dataPostEdit.status);
+            setSkillID(dataPostEdit.skillID);
+            getCities();
         }
 
     }, [dataPostEdit])
@@ -119,7 +128,7 @@ const ModalEditCity = (props) => {
                                     <Input
                                         className="form-control-alternative"
                                         type="text"
-                                        placeholder="10Tr/ 1000USD"
+                                        placeholder="10 triệu/ 1000 USD/ Thỏa thuận"
                                         value={salary}
                                         onChange={(event) => setSalary(event.target.value)}
                                     />
@@ -154,29 +163,28 @@ const ModalEditCity = (props) => {
                             <Col md="6">
                                 <Label>Hình thức làm việc</Label>
                                 <FormGroup>
-                                    <Input
+                                    {/* <Input
                                         className="form-control-alternative"
                                         type="text"
                                         placeholder="Fulltime/Part-time"
                                         value={workform}
                                         onChange={(event) => setWorkform(event.target.value)}
-                                    />
+                                    /> */}
+                                    <select
+                                        id="exampleSelect"
+                                        value={workform}
+                                        onChange={(event) => setWorkform(event.target.value)}
+                                        className="form-control-alternative"
+                                    >
+                                        <option >Chọn hình thức làm việc</option>
+                                        <option value="Fulltime">Fulltime</option>
+                                        <option value="Parttime">Parttime</option>
+
+                                    </select>
                                 </FormGroup>
                             </Col>
                         </Row>
                         <Row>
-                            <Col md="6">
-                                <Label>Vị trí</Label>
-                                <FormGroup>
-                                    <Input
-                                        className="form-control-alternative"
-                                        type="text"
-                                        placeholder="Fresher"
-                                        value={positionID}
-                                        onChange={(event) => setPositionID(event.target.value)}
-                                    />
-                                </FormGroup>
-                            </Col>
                             <Col md="6">
                                 <Label>Hạn nộp hồ sơ</Label>
                                 <FormGroup>
@@ -189,7 +197,29 @@ const ModalEditCity = (props) => {
                                     />
                                 </FormGroup>
                             </Col>
+                            <Col md="7">
+                                <Label>Khu vực làm việc</Label>
+                                <FormGroup>
+                                    <select
+                                        id="exampleSelect"
+                                        value={skillID}
+                                        onChange={(event) => setSkillID(event.target.value)}
+                                        className="form-control-alternative"
+                                    >
+                                        <option value=""> --- Chọn khu vực làm việc ---</option>
+                                        {cities.map((city) => (
+
+                                            <option key={city.id} value={city.id}>
+                                                {city.name}
+                                            </option>
+                                        ))}
+
+                                    </select>
+
+                                </FormGroup>
+                            </Col>
                         </Row>
+
                         <Row>
                             <Col md="12">
                                 <Label>Địa chỉ làm việc</Label>
@@ -214,19 +244,18 @@ const ModalEditCity = (props) => {
                                     name="status"
                                     // checked
                                     checked={status === 1}
-
                                     onChange={(event) => { setStatus(event.target.value) }}
+
                                 />  Hiển thị
                                 <br></br>
-
                                 <input
 
                                     type="radio"
                                     value="0"
                                     name="status"
-                                    // checked
                                     checked={status === 0}
                                     onChange={(event) => setStatus(event.target.value)}
+
                                 />  Tạm ẩn
                             </Col>
                         </Row>

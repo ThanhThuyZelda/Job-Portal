@@ -43,23 +43,17 @@ const Header = () => {
                                             <ul id="navigation">
                                                 <li><a href="/trang-chu">Trang chủ</a></li>
                                                 <li><a href="/tim-viec-lam">Tìm việc làm </a></li>
-                                                <li><a href="about.html">About</a></li>
-                                                <li><a href="#">Page</a>
-                                                    <ul className="submenu">
-                                                        <li><a href="blog.html">Blog</a></li>
-                                                        <li><a href="single-blog.html">Blog Details</a></li>
-                                                        <li><a href="elements.html">Elements</a></li>
-                                                        <li><a href="job_details.html">job Details</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="contact.html">Contact</a></li>
+                                                <li><a href="/ds-cong-ty">Danh sách các công ty</a></li>
+                                                {/* <li><a href="contact.html">Contact</a></li> */}
+                                                <li><a href="/employer/dang-nhap">Nhà tuyển dụng</a></li>
                                             </ul>
                                         </nav>
                                     </div>
                                     {/* Header-btn */}
                                     <div className="header-btn d-none f-right d-lg-block">
-                                        <a href="#" className="btn head-btn1">Register</a>
-                                        <a href="#" className="btn head-btn2">Login</a>
+                                        {/* <a href="#" className="btn btn-primary">Nhà tuyển dụng</a> */}
+                                        <a href="/nguoi-tim-viec/dang-nhap" className="btn btn-outline-primary">Đăng nhập</a>
+                                        <a href="/nguoi-tim-viec/dang-ky" className="btn btn-primary">Đăng ký</a>
                                     </div>
                                 </div>
                             </div>

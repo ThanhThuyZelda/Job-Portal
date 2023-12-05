@@ -32,7 +32,7 @@ const Register = (props) => {
 
     const handleRegister = async () => {
         let res = await postCreateEmployer(fullname, phone, email, password, position, company, address, website);
-        // console.log(">>check res: ", res);
+        console.log(">>check res: ", res);
         if (res && res.result.id) {
             //success
             setFullname('');

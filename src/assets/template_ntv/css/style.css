@@ -5765,6 +5765,12 @@ del {
 
 }
 
+.background3 {
+    /* background-image: url('../img/about/find.jpg'); */
+    background-image: url('../img/about/abe.jpg');
+
+}
+
 .slider-area .hero__caption {
     padding-right: 29px
 }
@@ -6406,7 +6412,8 @@ form.search-box .search-form a {
 
 .apply-bg {
     background-size: cover;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
+    background-image: url("assets/template_ntv/img/gallery/how-applybg.png");
 }
 
 .support-company-area .support-location-img {

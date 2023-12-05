@@ -28,11 +28,13 @@ const ModalDetailPost = (props) => {
     const [quantity, setQuantity] = useState("");
     const [address, setAddress] = useState("");
     const [workform, setWorkform] = useState("");
-    const [positionID, setPositionID] = useState("");
+    const [skillID, setSkillID] = useState("");
     const [empID, setEmpID] = useState("");
+    const [cities, setCities] = useState([]);
     const [DeadlineSubmission, setDeadlineSubmission] = useState("");
 
     const [status, setStatus] = useState();
+
 
     useEffect(() => {
         if (show) {
@@ -45,10 +47,11 @@ const ModalDetailPost = (props) => {
             setQuantity(dataDetailPost.quantity);
             setAddress(dataDetailPost.address);
             setWorkform(dataDetailPost.workform);
-            setPositionID(dataDetailPost.positionID);
+            setSkillID(dataDetailPost.skillID);
+            setStatus(dataDetailPost.status);
             setDeadlineSubmission(dataDetailPost.DeadlineSubmission);
-        }
 
+        }
     }, [dataDetailPost])
 
 
@@ -112,7 +115,10 @@ const ModalDetailPost = (props) => {
                                 )}
                             </span>
                         </Col>
-
+                        <Col xs="4">
+                            <h6 className='form-label text-blue'>Khu vực làm việc </h6>
+                            <span>{skillID}</span>
+                        </Col>
 
                     </Row>
                     <br></br>

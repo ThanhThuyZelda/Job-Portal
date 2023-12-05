@@ -53,7 +53,10 @@ import RegisterEmployerLayout from "layouts/RegisterEmployer.js";
 import JobSeeker from "layouts/JobSeeker.js";
 import FindJob from "layouts/FindJob.js";
 import Post_Detail from "layouts/Post_Detail.js";
-
+import ListCompany from "layouts/ListCompany.js";
+import Register from "layouts/RegisterJobS.js";
+import Login from "layouts/LoginJobS";
+import DetailCompany from "layouts/DetailCompany.js";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 
@@ -70,9 +73,13 @@ root.render(
       <Route path="/employer/dang-ky*" element={<RegisterEmployerLayout />} />
 
       <Route path="/trang-chu/*" element={<JobSeeker />} />
+      <Route path="/ds-cong-ty/*" element={<ListCompany />} />
+      <Route path="/nguoi-tim-viec/dang-ky/*" element={<Register />} />
+      <Route path="/nguoi-tim-viec/dang-nhap/*" element={<Login />} />
 
       <Route path="/tim-viec-lam/*" element={< FindJob />} />
       <Route path="/tim-viec-lam/chi-tiet-bai-tuyen-dung/*" element={< Post_Detail />} />
+      <Route path="/ds-cong-ty/chi-tiet-cong-ty/*" element={< DetailCompany />} />
 
 
       <Route path="*" element={<Navigate to="/trang-chu" replace />} />

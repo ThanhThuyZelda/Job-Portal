@@ -75,7 +75,7 @@ const Tables = (props) => {
 
     const getPosts = async (page) => {
         let res = await fetchAllPost(page);
-        console.log(">>> Check new res:", res);
+        console.log(">>> Check new post:", res.data.rows);
         if (res && res.data.rows) {
             setListPost(res.data.rows);
             setTotalPages(res.totalPage);

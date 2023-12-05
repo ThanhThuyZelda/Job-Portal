@@ -4,6 +4,7 @@ import Header from "components/Headers/JobSeeker";
 import Footer from "components/Footers/JobSeeker";
 import Company from "./Company";
 import Post from "./Post";
+import OtherPost from "./OtherPost";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import {
@@ -16,8 +17,28 @@ import {
     Col,
     Button, Form
 } from "reactstrap";
-const Post_Detail = () => {
+import { useLocation } from "react-router-dom";
+import Apply from "layouts/Apply";
+
+const Post_Detail = (props) => {
     const [key, setKey] = useState('home');
+
+    const location = useLocation();
+
+
+    const [isShowModalApply, setIsShowModalApply] = useState(false);
+    const [dataApply, setDataApply] = useState({});
+
+
+    const handleClose = () => {
+        setIsShowModalApply(false);
+    }
+
+    const handleApply = (post) => {
+        setIsShowModalApply(true);
+        setDataApply(post);
+    }
+
 
     return (
         <>
@@ -46,23 +67,32 @@ const Post_Detail = () => {
                                         <Col xs="2">
                                             <div class="company-img">
                                                 <a href="/tim-viec-lam/chi-tiet-bai-tuyen-dung/">
-                                                    <img src={require('../assets/template_ntv/img/icon/job-list3.png')} alt="" width="120" height="120" />
+                                                    <img
+                                                        src={location.state.Company.logo !== "user.png" && location.state.Company.logo !== null
+                                                            ? `http://localhost:8080/uploads/${location.state.Company.logo}`
+                                                            : `https://api.freelogodesign.org/assets/thumb/logo/ad95beb06c4e4958a08bf8ca8a278bad_400.png`
+                                                        }
+                                                        width="120px"
+                                                        height="120px"
+                                                        alt="" />
                                                 </a>
                                             </div>
                                         </Col>
                                         <Col xs="8">
-                                            <h3 className=" mb-0" style={{ paddingBottom: "10px" }}>Danh sách thành phố Danh sách thành phố Danh sách thành phố</h3>
-                                            <a href="" style={{ fontSize: "20px" }}>Tên công ty</a>
+                                            <h3 className=" mb-0" style={{ paddingBottom: "10px" }}>{location.state.headline}</h3>
+
+                                            <a href="" style={{ fontSize: "20px" }}>{location.state.Company.name}</a>
                                             <ul className="blog-info-link mt-3 mb-4">
-                                                <li style={{ color: "gray" }}> <i class="fa-solid fa-location-dot"></i>   Hà Nội</li>
-                                                <li style={{ color: "gray" }}> <i class="fa-regular fa-user"></i> Số lượng: 4</li>
-                                                <li style={{ color: "gray" }}> <i class="fa-solid fa-dollar-sign"></i>400 USD</li>
-                                                <li style={{ color: "gray" }}> Hình thức làm việc: Full-time</li>
+                                                <li style={{ color: "gray" }}> <i class="fa-solid fa-location-dot"></i>   {location.state.City.name}</li>
+                                                <li style={{ color: "gray" }}> <i class="fa-regular fa-user"></i>{location.state.quantity}</li>
+                                                <li style={{ color: "gray" }}> <i class="fa-solid fa-dollar-sign"></i>{location.state.salary}</li>
                                             </ul>
 
                                         </Col>
                                         <Col xs="2">
-                                            <button className="btn btn-success">Apply Now</button>
+                                            <button className="btn btn-success"
+                                                onClick={() => handleApply(location.state)}
+                                            >Ứng tuyển ngay</button>
                                         </Col>
                                     </Row>
                                     <br></br>
@@ -88,12 +118,17 @@ const Post_Detail = () => {
                         <Company />
                     </Tab>
                     <Tab eventKey="contact" title={<span style={{ color: 'purple', fontWeight: 'bold' }}> VIỆC LÀM KHÁC TỪ CÔNG TY</span>}>
-                        VIỆC LÀM KHÁC TỪ CÔNG TY
+                        <OtherPost />
                     </Tab>
                 </Tabs>
             </div>
 
             < Footer />
+            <Apply
+                show={isShowModalApply}
+                handleClose={handleClose}
+                dataApply={dataApply}
+            />
         </>
     );
 

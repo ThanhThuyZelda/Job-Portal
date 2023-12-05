@@ -9,16 +9,30 @@ axios.interceptors.response.use(function (response) {
 });
 
 
-// service City
+// service Post
 const fetchAllPost = (page) => {
     return axios.get(`/nha-tuyen-dung/bai-tuyen-dung/show/hienthi?page=${page}`);
     // return axios.get(`/nha-tuyen-dung/bai-tuyen-dung/show/hienthi`);
+
+}
+
+// search Post
+// service Post
+const searchPost = (text, skillID, workform) => {
+    return axios.get(`/nha-tuyen-dung/trang-chu/tim-kiem-post?text=${text}&skillID=${skillID}&workform=${workform}`);
 }
 
 
-const postCreate = (headline, salary, gender, require, des, benefit, quantity, address, workform, positionID, empID, status, DeadlineSubmission) => {
+
+// display list city
+const fetchAllCity = (page) => {
+    return axios.get(`/quan-tri-vien/thanh-pho/`);
+}
+
+
+const postCreate = (headline, salary, gender, require, des, benefit, quantity, address, workform, skillID, empID, compID, status, DeadlineSubmission) => {
     return axios.post('/nha-tuyen-dung/bai-tuyen-dung/them', {
-        headline, salary, gender, require, des, benefit, quantity, address, workform, positionID, empID, status, DeadlineSubmission
+        headline, salary, gender, require, des, benefit, quantity, address, workform, skillID, empID, compID, status, DeadlineSubmission
     })
 }
 const fetchEmployerFromSession = () => {
@@ -29,9 +43,9 @@ const fetchDetailPosts = (id) => {
     return axios.get(`/nha-tuyen-dung/bai-tuyen-dung/${id}`);
 }
 
-const putUpdatePost = (id, headline, salary, gender, require, des, benefit, quantity, address, workform, positionID, empID, status, DeadlineSubmission) => {
+const putUpdatePost = (id, headline, salary, gender, require, des, benefit, quantity, address, workform, skillID, empID, compID, status, DeadlineSubmission) => {
     return axios.put(`/nha-tuyen-dung/bai-tuyen-dung/${id}`, {
-        headline, salary, gender, require, des, benefit, quantity, address, workform, positionID, empID, status, DeadlineSubmission
+        headline, salary, gender, require, des, benefit, quantity, address, workform, skillID, empID, compID, status, DeadlineSubmission
     });
 }
 
@@ -40,4 +54,9 @@ const deletePost = (id) => {
 }
 
 
-export { fetchAllPost, postCreate, fetchEmployerFromSession, fetchDetailPosts, deletePost, putUpdatePost };
+
+
+export {
+    fetchAllPost, postCreate, fetchEmployerFromSession,
+    fetchDetailPosts, deletePost, putUpdatePost, fetchAllCity, searchPost
+};

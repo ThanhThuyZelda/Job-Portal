@@ -40,7 +40,7 @@ const Forms = (props) => {
 
     const getCompany = async () => {
         const res = await fetchCompanyFromSession();
-        // console.log("check find company: ", res);
+        // console.log("check find company1: ", res);
         if (res) {
             setID(res.id);
             setName(res.name);
@@ -56,20 +56,24 @@ const Forms = (props) => {
         }
     }
     const [compInfo, setCompInfo] = useState({
-        file: [],
-        filepreview: null
+        filepreview: null,
     });
 
-    const handleInputChange = (event) => {
-        setCompInfo({
-            ...compInfo,
-            file: event.target.files[0],
-            filepreview: URL.createObjectURL(event.target.files[0]),
-        });
+
+    const handleInputChange = (event) => {// Xử lý sự kiện khi chọn file
+        const selectedFile = event.target.files[0];
+        if (selectedFile) {
+            // Cập nhật logo và compInfo
+            setLogo(selectedFile);
+            setCompInfo({
+                filepreview: URL.createObjectURL(selectedFile),
+            });
+        }
+        console.log("change: ", logo, compInfo)
     }
     const handleEditCompany = async () => {
         let res = await putUpdateCompany(id, name, logo, address, worktime, country, description, website, scale, skill);
-        // console.log(res);
+        console.log(res);
         if (res) {
             //success
             toast.success("Thông tin công ty đã cập nhật thành công!!!");
@@ -91,40 +95,38 @@ const Forms = (props) => {
                     {/* className="order-lg-2" */}
                     <Col lg="3">
                         <div className="card-profile-image">
-                            {compInfo.filepreview !== null ?
+                            {compInfo.filepreview !== null ? (
                                 <img className="previewimg" src={compInfo.filepreview} alt="UploadImage" />
-                                : null}
-
-
-                            {logo !== "user.png" && logo !== null ?
-                                < img className='rounded-circle' onClick={() => fileRef.current.click()}
-                                    src={`http://localhost:8080/uploads/${logo}`}
-                                />
-
-                                :
-                                <img className="rounded-circle"
+                            ) : (
+                                // Nếu không, hiển thị hình ảnh hiện tại hoặc mặc định
+                                <img
+                                    className='rounded-circle'
                                     onClick={() => fileRef.current.click()}
-                                    src={`https://api.freelogodesign.org/assets/thumb/logo/ad95beb06c4e4958a08bf8ca8a278bad_400.png`}
+                                    src={logo !== "user.png" && logo !== null
+                                        ? `http://localhost:8080/uploads/${logo}`
+                                        : `https://api.freelogodesign.org/assets/thumb/logo/ad95beb06c4e4958a08bf8ca8a278bad_400.png`
+                                    }
                                 />
-                            }
+                            )}
                         </div>
                     </Col>
                 </Row>
                 <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-
-                <Row>
-                    <Col lg="3" className="text-center text-red ">
-                        <input type="file"
-                            // setLogo(event.target.files[0])
-                            onChange={handleInputChange}
-                            ref={fileRef} style={{ display: "none" }} />
-
-                        <Label className="text-color" onClick={() => fileRef.current.click()}>Đổi logo</Label>
-
-                    </Col>
-                </Row>
-                <br></br>
                 <Form >
+                    <Row>
+                        <Col lg="3" className="text-center text-red ">
+                            <input type="file"
+                                onChange={handleInputChange}
+                                // setLogo(event.target.files[0])
+                                // onChange={(event) => setLogo(event.target.files[0])}
+                                ref={fileRef} style={{ display: "none" }} />
+
+                            <Label className="text-color" onClick={() => fileRef.current.click()}>Đổi logo</Label>
+
+                        </Col>
+                    </Row>
+                    <br></br>
+
                     <Row>
                         <Col >
                             <div className="justify-content-left">

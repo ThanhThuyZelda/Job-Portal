@@ -39,7 +39,7 @@ const Profile = () => {
   const getNTD = async () => {
     const res = await fetchEmployerFromSession();
     const res2 = await fetchNameCompany();
-    console.log("check find company: ", res, res2);
+    console.log("check employer: ", res, res2);
     if (res && res2) {
       setID(res.id);
       setFullname(res.fullname);

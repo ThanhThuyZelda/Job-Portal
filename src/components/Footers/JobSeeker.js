@@ -40,11 +40,10 @@ const Footer = () => {
                                 <div className="footer-tittle">
                                     <h4>Important Link</h4>
                                     <ul>
-                                        <li><a href="#"> View Project</a></li>
-                                        <li><a href="#">Contact Us</a></li>
-                                        <li><a href="#">Testimonial</a></li>
-                                        <li><a href="#">Proparties</a></li>
-                                        <li><a href="#">Support</a></li>
+                                        <li><a href="/trang-chu">Trang chủ</a></li>
+                                        <li><a href="/tim-viec-lam">Tìm việc làm</a></li>
+                                        <li><a href="/ds-cong-ty">Danh sách công ty</a></li>
+                                        <li><a href="/employer/dang-nhap">Dành cho nhà tuyển dụng</a></li>
                                     </ul>
                                 </div>
                             </div>
