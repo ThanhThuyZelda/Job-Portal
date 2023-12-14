@@ -60,11 +60,11 @@ const ModalDetailPost = (props) => {
             <Modal
                 show={show}
                 onHide={handleClose}
-                backdrop="static"
-                keyboard={false}>
+                size="lg"
+                aria-labelledby="example-modal-sizes-title-lg" >
                 <Modal.Header closeButton>
 
-                    <Modal.Title>Chi tiết bài đăng của bạn</Modal.Title>
+                    <Modal.Title>Chi tiết bài tuyển dụng của bạn</Modal.Title>
 
                 </Modal.Header>
                 <Modal.Body>

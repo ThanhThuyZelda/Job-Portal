@@ -1,20 +1,4 @@
-/*!
 
-=========================================================
-* Argon Dashboard React - v1.2.3
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
@@ -49,6 +33,7 @@ import EmployerLayout from "layouts/Employer.js";
 import AuthLayout from "layouts/Auth.js";
 import AuthEmployerLayout from "layouts/AuthEmployer.js";
 import RegisterEmployerLayout from "layouts/RegisterEmployer.js";
+import ListCV from "views/Employer/Post/ListCV";
 //===============================================
 import JobSeeker from "layouts/JobSeeker.js";
 import FindJob from "layouts/FindJob.js";
@@ -57,6 +42,9 @@ import ListCompany from "layouts/ListCompany.js";
 import Register from "layouts/RegisterJobS.js";
 import Login from "layouts/LoginJobS";
 import DetailCompany from "layouts/DetailCompany.js";
+import InforJobSeeker from "layouts/InforJobSeeker.js";
+import HistoryJS from "layouts/HistoryJobSeeker.js";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 
@@ -76,6 +64,9 @@ root.render(
       <Route path="/ds-cong-ty/*" element={<ListCompany />} />
       <Route path="/nguoi-tim-viec/dang-ky/*" element={<Register />} />
       <Route path="/nguoi-tim-viec/dang-nhap/*" element={<Login />} />
+      <Route path="/nguoi-tim-viec/thong-tin-ca-nhan/*" element={<InforJobSeeker />} />
+      <Route path="/nguoi-tim-viec/lich-su-ung-tuyen/*" element={<HistoryJS />} />
+
 
       <Route path="/tim-viec-lam/*" element={< FindJob />} />
       <Route path="/tim-viec-lam/chi-tiet-bai-tuyen-dung/*" element={< Post_Detail />} />

@@ -1,5 +1,7 @@
 import Header from "components/Headers/JobSeeker.js";
-import Footer from "components/Footers/JobSeeker.js"
+import Chatbot from "./Chatbot";
+import Footer from "components/Footers/JobSeeker.js";
+import HeaderLogin from "components/Headers/JobSeekerLogined.js";
 import { useLocation } from "react-router-dom";
 import {
     Card,
@@ -39,9 +41,25 @@ const DetailCompany = (props) => {
             { replace: true, state: post });
     }
 
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        setLoggedIn(!!token); // Nếu có token, đánh dấu là đã đăng nhập
+    }, []);
+
+
+
     return (
         <>
-            <Header />
+            {loggedIn ? (
+                <>
+                    <HeaderLogin />
+                </>
+            ) : (
+                <Header />
+            )
+            }
 
             <div className="slider-area ">
                 <div className="single-slider background3 slider-height2 d-flex align-items-center" >
@@ -188,7 +206,7 @@ const DetailCompany = (props) => {
                     }
                 </div>
             </div>
-
+            <Chatbot />
             {/* </div>
                 </section>
             </div> */}

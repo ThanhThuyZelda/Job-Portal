@@ -16,9 +16,7 @@ const Post = () => {
                                 <div className="small-section-tittle">
                                     <h4>Mô tả chi tiết công việc</h4>
                                 </div>
-                                <p dangerouslySetInnerHTML={{ __html: location.state.des }}>
-                                    {/* <span dangerouslySetInnerHTML={{ __html: location.state.require }}></span> */}
-                                </p>
+                                <p dangerouslySetInnerHTML={{ __html: location.state.des }}></p>
                             </div>
                             <div className="post-details2  mb-50">
                                 {/* <!-- Small Section Tittle --> */}

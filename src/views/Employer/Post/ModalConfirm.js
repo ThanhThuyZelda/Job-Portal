@@ -27,7 +27,7 @@ const ModalConfirm = (props) => {
                 keyboard={false}>
                 <Modal.Header closeButton>
 
-                    <Modal.Title>Xóa thành phố</Modal.Title>
+                    <Modal.Title>Xóa bài tuyển dụng</Modal.Title>
 
                 </Modal.Header>
                 <Modal.Body>

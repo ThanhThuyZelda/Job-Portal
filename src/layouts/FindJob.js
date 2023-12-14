@@ -1,4 +1,5 @@
 import Header from "components/Headers/JobSeeker.js"
+import HeaderLogin from "components/Headers/JobSeekerLogined.js";
 import Footer from "components/Footers/JobSeeker.js"
 import {
     Card,
@@ -85,12 +86,25 @@ const JobSeeker = (props) => {
         }
 
     }
+    const [loggedIn, setLoggedIn] = useState(false);
 
+    useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        setLoggedIn(!!token); // Nếu có token, đánh dấu là đã đăng nhập
+    }, []);
     return (
         <>
 
-            <Header />
-            <main>
+            {loggedIn ? (
+                <>
+                    <HeaderLogin />
+                </>
+            ) : (
+                <Header />
+            )
+            }
+
+            < main >
                 <div className="slider-area ">
                     <div className="single-slider background1 slider-height2 d-flex align-items-center" >
                         <div className="container">

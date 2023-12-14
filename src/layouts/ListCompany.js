@@ -1,9 +1,10 @@
 import Header from "components/Headers/JobSeeker.js";
+import HeaderLogin from "components/Headers/JobSeekerLogined.js";
 import Footer from "components/Footers/JobSeeker.js"
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from 'react-router-dom';
 import { fetchAllCompany } from "../services/Homepage/PostService.js";
-
+import Chatbot from "./Chatbot.js";
 const ListCompany = () => {
     const [listCompany, setListCompany] = useState([]);
 
@@ -27,13 +28,25 @@ const ListCompany = () => {
             { replace: true, state: company });
 
     }
+    const [loggedIn, setLoggedIn] = useState(false);
 
+    useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        setLoggedIn(!!token); // Nếu có token, đánh dấu là đã đăng nhập
+    }, []);
 
 
     return (
         <>
 
-            <Header />
+            {loggedIn ? (
+                <>
+                    <HeaderLogin />
+                </>
+            ) : (
+                <Header />
+            )
+            }
             <main>
 
                 <div className="our-services section-pad-t30">
@@ -80,6 +93,7 @@ const ListCompany = () => {
 
 
             </main>
+            <Chatbot />
             <Footer />
         </>
 

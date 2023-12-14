@@ -20,7 +20,7 @@ import ModalEditPost from "./ModalEdit";
 import ModalConfirm from "./ModalConfirm";
 import ModalDetailPost from "./ModalDetailPost.js"
 import _, { debounce } from "lodash";
-
+import ListCV from "./ListCV";
 const Tables = (props) => {
 
     const [listPost, setListPost] = useState([]);
@@ -36,11 +36,16 @@ const Tables = (props) => {
     const [isShowModalDelete, setIsShowModalDelete] = useState(false);
     const [dataPostDelete, setDataPostDelete] = useState({});
 
+    const [isShowListCV, setIsShowListCV] = useState(false);
+    const [dataListCV, setDataListCV] = useState({});
+
+
     // Add new
     const handleClose = () => {
         setIsShowModalDetailPost(false);
         setIsShowModalEdit(false);
         setIsShowModalDelete(false);
+        setIsShowListCV(false);
     }
     const handleUpdateTable = (post) => {
         setListPost([post, ...listPost])
@@ -58,6 +63,11 @@ const Tables = (props) => {
         setDataPostDelete(post);
     }
 
+    // List CV
+    const handelListCV = (post) => {
+        setIsShowListCV(true);
+        setDataListCV(post);
+    }
 
     //Edit Post ========================================
     const handleUpdatePost = (post) => {
@@ -106,7 +116,7 @@ const Tables = (props) => {
                                     </Col>
 
                                 </Row>
-                                <br></br>
+                                {/* <br></br>
                                 <Row>
                                     <Col xs="4">
                                         <input type="text" className="form-control"
@@ -122,7 +132,7 @@ const Tables = (props) => {
                                             onClick={() => { setIsShowModalAddNew(true) }}
                                         >Thêm mới</button>
                                     </Col> */}
-                                </Row>
+                                {/* </Row> */}
                             </CardHeader>
 
                             <CardBody>
@@ -203,7 +213,9 @@ const Tables = (props) => {
                                                                 {/* <span className="text-nowrap">Since last month</span> */}
                                                             </p>
                                                             <br></br>
-                                                            <button className=" shadow btn btn-outline-secondary">
+                                                            <button className=" shadow btn btn-outline-secondary"
+                                                                onClick={() => handelListCV(item)}
+                                                            >
                                                                 Xem các hồ sơ đã ứng tuyển
                                                             </button>
                                                         </CardBody>
@@ -257,6 +269,11 @@ const Tables = (props) => {
                 show={isShowModalDetailPost}
                 handleClose={handleClose}
                 dataDetailPost={dataDetailPost}
+            />
+            <ListCV
+                show={isShowListCV}
+                handleClose={handleClose}
+                dataListCV={dataListCV}
             />
 
             <ToastContainer

@@ -38,6 +38,7 @@ const AddNewPost = (props) => {
         const futureDate = currentDate.add(30, 'days');
         return futureDate.format('YYYY-MM-DD');
     });
+    const getCurrentDate = () => moment().format('YYYY-MM-DD');
     const [status, setStatus] = useState();
 
     useEffect(() => {
@@ -62,33 +63,45 @@ const AddNewPost = (props) => {
 
 
     const handleSavePost = async () => {
-        let res = await postCreate(headline, salary, gender, require, des, benefit, quantity, address, workform, skillID, empID, compID, status, DeadlineSubmission);
-        console.log(">>check res: ", res);
-        if (res && res.post.id) {
-            //success
-            // handleClose();
-            setHeadline('');
-            setSalary('');
-            setGender('');
-            setRequire('');
-            setDes('');
-            setBenefit('');
-            setQuantity('');
-            setAddress('');
-            setWorkform('');
-            setPositionID('');
-            setEmpID('');
-            setCompID('');
-            setSkillID('');
-            setDeadlineSubmission('');
-            setStatus('');
-            toast.success("Bài tuyển dụng đã được tạo thành công!!!")
-            //     // props.handleUpdateTable({ name: name, id: res.city.id });
+        if (quantity < 1) {
+            toast.error("Số lượng tuyển dụng không được nhỏ hơn 1!!!");
+            // return;
+        }
+        else if (DeadlineSubmission <= getCurrentDate()) {
+            toast.error("Hạn nộp hồ sơ phải sau ngày hiện tại!!!");
+        }
+        else if (!skillID) {
+            toast.error("Bạn phải chọn khu vực làm việc!!!");
         }
         else {
-            //error
-            toast.error("Có lỗi xảy ra!!!");
+            let res = await postCreate(headline, salary, gender, require, des, benefit, quantity, address, workform, skillID, empID, compID, status, DeadlineSubmission);
+            console.log(">>check res: ", res);
+            if (res && res.post.id) {
+                //success
+                // handleClose();
+                setHeadline('');
+                setSalary('');
+                setGender('');
+                setRequire('');
+                setDes('');
+                setBenefit('');
+                setQuantity('');
+                setAddress('');
+                setWorkform('');
+                setPositionID('');
+                setEmpID('');
+                setCompID('');
+                setSkillID('');
+                setDeadlineSubmission('');
+                setStatus('');
+                toast.success("Bài tuyển dụng đã được tạo thành công!!!")
+                //     // props.handleUpdateTable({ name: name, id: res.city.id });
+            }
+            else {
+                //error
+                toast.error("Có lỗi xảy ra!!!");
 
+            }
         }
     }
     return (

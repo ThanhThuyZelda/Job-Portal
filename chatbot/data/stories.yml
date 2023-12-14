@@ -2,254 +2,233 @@ version: "3.1"
 
 stories:
 
-- story: cv_luong_cao
+- story: chao
   steps:
   - intent: greet
   - action: utter_greeting
-  - intent: work_high_salary
-  - action: utter_work_high_salary1
-  - action: utter_work_high_salary2
-  - action: utter_work_high_salary3
-  - action: utter_work_high_salary4
-  - action: utter_work_high_salary5
-  - action: utter_work_high_salary6
-  - intent: thanks
-  - action: utter_thanks
-  - intent: goodbye
-  - action: utter_goodbye
-
-- story: cv_de_xin
-  steps:
-  - intent: greet
-  - action: utter_greeting
-  - intent: work_easy_apply
-  - action: utter_work_easy_apply1
-  - action: utter_work_easy_apply2
-  - action: utter_work_easy_apply3
-  - action: utter_work_easy_apply4
-  - intent: thanks
-  - action: utter_thanks
-  - intent: goodbye
-  - action: utter_goodbye
-
-- story: cty_uu_dai
-  steps:
-  - intent: greet
-  - action: utter_greeting
-  - intent: company_endow
-  - action: utter_company_endow1
-  - action: utter_company_endow2
-  - action: utter_company_endow3
-  - action: utter_company_endow4
-  - action: utter_company_endow5
-  - intent: thanks
-  - action: utter_thanks
-  - intent: goodbye
-  - action: utter_goodbye
-
-- story: cty_luong_cao_nhat
-  steps:
-  - intent: greet
-  - action: utter_greeting
-  - intent: company_high_salary
-  - action: utter_company_high_salary
-  - intent: thanks
-  - action: utter_thanks
-  - intent: goodbye
-  - action: utter_goodbye
-
-
-- story: story1
-  steps:
-  - intent: greet
-  - action: utter_greeting
-  - intent: work_high_salary
-  - action: utter_work_high_salary1
-  - action: utter_work_high_salary2
-  - action: utter_work_high_salary3
-  - action: utter_work_high_salary4
-  - action: utter_work_high_salary5
-  - intent: work_easy_apply
-  - action: utter_work_easy_apply1
-  - action: utter_work_easy_apply2
-  - action: utter_work_easy_apply3
-  - action: utter_work_easy_apply4
-  - intent: company_endow
-  - action: utter_company_endow1
-  - action: utter_company_endow2
-  - action: utter_company_endow3
-  - action: utter_company_endow4
-  - action: utter_company_endow5
-  - intent: company_high_salary
-  - action: utter_company_high_salary
-  - intent: thanks
-  - action: utter_thanks
-  - intent: goodbye
-  - action: utter_goodbye
-
-- story: story2
-  steps:
-  - intent: greet
-  - action: utter_greeting
-  - intent: work_high_salary
-  - action: utter_work_high_salary1
-  - action: utter_work_high_salary2
-  - action: utter_work_high_salary3
-  - action: utter_work_high_salary4
-  - action: utter_work_high_salary5
-  - intent: company_endow
-  - action: utter_company_endow1
-  - action: utter_company_endow2
-  - action: utter_company_endow3
-  - action: utter_company_endow4
-  - action: utter_company_endow5
-  - intent: work_easy_apply
-  - action: utter_work_easy_apply1
-  - action: utter_work_easy_apply2
-  - action: utter_work_easy_apply3
-  - action: utter_work_easy_apply4
-  - intent: company_high_salary
-  - action: utter_company_high_salary
-  - intent: thanks
-  - action: utter_thanks
-  - intent: goodbye
-  - action: utter_goodbye
-
-- story: story3
-  steps:
-  - intent: greet
-  - action: utter_greeting
-  - intent: work_high_salary
-  - action: utter_work_high_salary1
-  - action: utter_work_high_salary2
-  - action: utter_work_high_salary3
-  - action: utter_work_high_salary4
-  - action: utter_work_high_salary5
-  - intent: company_high_salary
-  - action: utter_company_high_salary
-  - intent: work_easy_apply
-  - action: utter_work_easy_apply1
-  - action: utter_work_easy_apply2
-  - action: utter_work_easy_apply3
-  - action: utter_work_easy_apply4
-  - intent: company_endow
-  - action: utter_company_endow1
-  - action: utter_company_endow2
-  - action: utter_company_endow3
-  - action: utter_company_endow4
-  - action: utter_company_endow5
-  - intent: thanks
-  - action: utter_thanks
-  - intent: goodbye
-  - action: utter_goodbye
-
-- story: story4
-  steps:
-  - intent: greet
-  - action: utter_greeting
-  - intent: work_high_salary
-  - action: utter_work_high_salary1
-  - action: utter_work_high_salary2
-  - action: utter_work_high_salary3
-  - action: utter_work_high_salary4
-  - action: utter_work_high_salary5
-  - intent: company_high_salary
-  - action: utter_company_high_salary
-  - intent: company_endow
-  - action: utter_company_endow1
-  - action: utter_company_endow2
-  - action: utter_company_endow3
-  - action: utter_company_endow4
-  - action: utter_company_endow5
-  - intent: work_easy_apply
-  - action: utter_work_easy_apply1
-  - action: utter_work_easy_apply2
-  - action: utter_work_easy_apply3
-  - action: utter_work_easy_apply4
-  - intent: thanks
-  - action: utter_thanks
-  - intent: goodbye
-  - action: utter_goodbye
-
-
-- story: story5
-  steps:
-  - intent: greet
-  - action: utter_greeting
-  - intent: work_high_salary
-  - action: utter_work_high_salary1
-  - action: utter_work_high_salary2
-  - action: utter_work_high_salary3
-  - action: utter_work_high_salary4
-  - action: utter_work_high_salary5
-  - intent: company_endow
-  - action: utter_company_endow1
-  - action: utter_company_endow2
-  - action: utter_company_endow3
-  - action: utter_company_endow4
-  - action: utter_company_endow5
-  - intent: company_high_salary
-  - action: utter_company_high_salary
-  - intent: work_easy_apply
-  - action: utter_work_easy_apply1
-  - action: utter_work_easy_apply2
-  - action: utter_work_easy_apply3
-  - action: utter_work_easy_apply4
-  - intent: thanks
-  - action: utter_thanks
-  - intent: goodbye
-  - action: utter_goodbye
-
-- story: story6
-  steps:
-  - intent: greet
-  - action: utter_greeting
-  - intent: work_high_salary
-  - action: utter_work_high_salary1
-  - action: utter_work_high_salary2
-  - action: utter_work_high_salary3
-  - action: utter_work_high_salary4
-  - action: utter_work_high_salary5
-  - intent: work_easy_apply
-  - action: utter_work_easy_apply1
-  - action: utter_work_easy_apply2
-  - action: utter_work_easy_apply3
-  - action: utter_work_easy_apply4
-  - intent: company_high_salary
-  - action: utter_company_high_salary
-  - intent: company_endow
-  - action: utter_company_endow1
-  - action: utter_company_endow2
-  - action: utter_company_endow3
-  - action: utter_company_endow4
-  - action: utter_company_endow5
-  - intent: thanks
-  - action: utter_thanks
-  - intent: goodbye
-  - action: utter_goodbye
-
-
-
-# - story: sad path 1
-#   steps:
-#   - intent: greet
-#   - action: utter_greet
-#   - intent: mood_unhappy
-#   - action: utter_cheer_up
-#   - action: utter_did_that_help
-#   - intent: affirm
-#   - action: utter_happy
-
-# - story: sad path 2
-#   steps:
-#   - intent: greet
-#   - action: utter_greet
-#   - intent: mood_unhappy
-#   - action: utter_cheer_up
-#   - action: utter_did_that_help
-#   - intent: deny
+#   - intent: work_high_salary
+#   - action: utter_work_high_salary1
+#   - action: utter_work_high_salary2
+#   - action: utter_work_high_salary3
+#   - action: utter_work_high_salary4
+#   - action: utter_work_high_salary5
+#   - action: utter_work_high_salary6
+#   - intent: thanks
+#   - action: utter_thanks
+#   - intent: goodbye
 #   - action: utter_goodbye
 
-# demo
+# - story: cv_de_xin
+#   steps:
+#   - intent: greet
+#   - action: utter_greeting
+#   - intent: work_easy_apply
+#   - action: utter_work_easy_apply1
+#   - action: utter_work_easy_apply2
+#   - action: utter_work_easy_apply3
+#   - action: utter_work_easy_apply4
+#   - intent: thanks
+#   - action: utter_thanks
+#   - intent: goodbye
+#   - action: utter_goodbye
+
+# - story: cty_uu_dai
+#   steps:
+#   - intent: greet
+#   - action: utter_greeting
+#   - intent: company_endow
+#   - action: utter_company_endow1
+#   - action: utter_company_endow2
+#   - action: utter_company_endow3
+#   - action: utter_company_endow4
+#   - action: utter_company_endow5
+#   - intent: thanks
+#   - action: utter_thanks
+#   - intent: goodbye
+#   - action: utter_goodbye
+
+# - story: cty_luong_cao_nhat
+#   steps:
+#   - intent: greet
+#   - action: utter_greeting
+#   - intent: company_high_salary
+#   - action: utter_company_high_salary
+#   - intent: thanks
+#   - action: utter_thanks
+#   - intent: goodbye
+#   - action: utter_goodbye
+
+
+# - story: story1
+#   steps:
+#   - intent: greet
+#   - action: utter_greeting
+#   - intent: work_high_salary
+#   - action: utter_work_high_salary1
+#   - action: utter_work_high_salary2
+#   - action: utter_work_high_salary3
+#   - action: utter_work_high_salary4
+#   - action: utter_work_high_salary5
+#   - intent: work_easy_apply
+#   - action: utter_work_easy_apply1
+#   - action: utter_work_easy_apply2
+#   - action: utter_work_easy_apply3
+#   - action: utter_work_easy_apply4
+#   - intent: company_endow
+#   - action: utter_company_endow1
+#   - action: utter_company_endow2
+#   - action: utter_company_endow3
+#   - action: utter_company_endow4
+#   - action: utter_company_endow5
+#   - intent: company_high_salary
+#   - action: utter_company_high_salary
+#   - intent: thanks
+#   - action: utter_thanks
+#   - intent: goodbye
+#   - action: utter_goodbye
+
+# - story: story2
+#   steps:
+#   - intent: greet
+#   - action: utter_greeting
+#   - intent: work_high_salary
+#   - action: utter_work_high_salary1
+#   - action: utter_work_high_salary2
+#   - action: utter_work_high_salary3
+#   - action: utter_work_high_salary4
+#   - action: utter_work_high_salary5
+#   - intent: company_endow
+#   - action: utter_company_endow1
+#   - action: utter_company_endow2
+#   - action: utter_company_endow3
+#   - action: utter_company_endow4
+#   - action: utter_company_endow5
+#   - intent: work_easy_apply
+#   - action: utter_work_easy_apply1
+#   - action: utter_work_easy_apply2
+#   - action: utter_work_easy_apply3
+#   - action: utter_work_easy_apply4
+#   - intent: company_high_salary
+#   - action: utter_company_high_salary
+#   - intent: thanks
+#   - action: utter_thanks
+#   - intent: goodbye
+#   - action: utter_goodbye
+
+# - story: story3
+#   steps:
+#   - intent: greet
+#   - action: utter_greeting
+#   - intent: work_high_salary
+#   - action: utter_work_high_salary1
+#   - action: utter_work_high_salary2
+#   - action: utter_work_high_salary3
+#   - action: utter_work_high_salary4
+#   - action: utter_work_high_salary5
+#   - intent: company_high_salary
+#   - action: utter_company_high_salary
+#   - intent: work_easy_apply
+#   - action: utter_work_easy_apply1
+#   - action: utter_work_easy_apply2
+#   - action: utter_work_easy_apply3
+#   - action: utter_work_easy_apply4
+#   - intent: company_endow
+#   - action: utter_company_endow1
+#   - action: utter_company_endow2
+#   - action: utter_company_endow3
+#   - action: utter_company_endow4
+#   - action: utter_company_endow5
+#   - intent: thanks
+#   - action: utter_thanks
+#   - intent: goodbye
+#   - action: utter_goodbye
+
+# - story: story4
+#   steps:
+#   - intent: greet
+#   - action: utter_greeting
+#   - intent: work_high_salary
+#   - action: utter_work_high_salary1
+#   - action: utter_work_high_salary2
+#   - action: utter_work_high_salary3
+#   - action: utter_work_high_salary4
+#   - action: utter_work_high_salary5
+#   - intent: company_high_salary
+#   - action: utter_company_high_salary
+#   - intent: company_endow
+#   - action: utter_company_endow1
+#   - action: utter_company_endow2
+#   - action: utter_company_endow3
+#   - action: utter_company_endow4
+#   - action: utter_company_endow5
+#   - intent: work_easy_apply
+#   - action: utter_work_easy_apply1
+#   - action: utter_work_easy_apply2
+#   - action: utter_work_easy_apply3
+#   - action: utter_work_easy_apply4
+#   - intent: thanks
+#   - action: utter_thanks
+#   - intent: goodbye
+#   - action: utter_goodbye
+
+
+# - story: story5
+#   steps:
+#   - intent: greet
+#   - action: utter_greeting
+#   - intent: work_high_salary
+#   - action: utter_work_high_salary1
+#   - action: utter_work_high_salary2
+#   - action: utter_work_high_salary3
+#   - action: utter_work_high_salary4
+#   - action: utter_work_high_salary5
+#   - intent: company_endow
+#   - action: utter_company_endow1
+#   - action: utter_company_endow2
+#   - action: utter_company_endow3
+#   - action: utter_company_endow4
+#   - action: utter_company_endow5
+#   - intent: company_high_salary
+#   - action: utter_company_high_salary
+#   - intent: work_easy_apply
+#   - action: utter_work_easy_apply1
+#   - action: utter_work_easy_apply2
+#   - action: utter_work_easy_apply3
+#   - action: utter_work_easy_apply4
+#   - intent: thanks
+#   - action: utter_thanks
+#   - intent: goodbye
+#   - action: utter_goodbye
+
+# # - story: story6
+#   steps:
+#   - intent: greet
+#   - action: utter_greeting
+#   - intent: work_high_salary
+#   - action: utter_work_high_salary1
+#   - action: utter_work_high_salary2
+#   - action: utter_work_high_salary3
+#   - action: utter_work_high_salary4
+#   - action: utter_work_high_salary5
+#   - intent: work_easy_apply
+#   - action: utter_work_easy_apply1
+#   - action: utter_work_easy_apply2
+#   - action: utter_work_easy_apply3
+#   - action: utter_work_easy_apply4
+#   - intent: company_high_salary
+#   - action: utter_company_high_salary
+#   - intent: company_endow
+#   - action: utter_company_endow1
+#   - action: utter_company_endow2
+#   - action: utter_company_endow3
+#   - action: utter_company_endow4
+#   - action: utter_company_endow5
+#   - intent: thanks
+#   - action: utter_thanks
+#   - intent: goodbye
+#   - action: utter_goodbye
+
+
+
 
 

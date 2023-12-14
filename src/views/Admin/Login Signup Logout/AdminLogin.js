@@ -33,7 +33,7 @@ const Register = () => {
       return;
     }
     let res = await AdminLogin(email, password);
-    console.log(">>> check res: ", res);
+    // console.log(">>> check res: ", res);
     if (res && res.token) {
       localStorage.setItem("token", res.token);
       navigate("/admin/index");

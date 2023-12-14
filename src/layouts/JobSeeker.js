@@ -1,8 +1,10 @@
 import Header from "components/Headers/JobSeeker.js"
+import HeaderLogin from "components/Headers/JobSeekerLogined.js";
 import Footer from "components/Footers/JobSeeker.js"
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from 'react-router-dom';
 import { fetchAllCompany, fetchPostHomepage } from "../services/Homepage/PostService.js";
+import Chatbot from "./Chatbot.js";
 
 const JobSeeker = () => {
     const [listCompany, setListCompany] = useState([]);
@@ -10,8 +12,6 @@ const JobSeeker = () => {
 
     //xem chi tiet
     const navigate = useNavigate();
-
-
 
     const handleDetailPost = (post) => {
         navigate('/tim-viec-lam/chi-tiet-bai-tuyen-dung/',
@@ -33,17 +33,30 @@ const JobSeeker = () => {
     }
     const getPost = async () => {
         let res = await fetchPostHomepage();
-        console.log(res.data.rows);
+        // console.log(res.data.rows);
         if (res && res.data && res.data.rows) {
             setListPost(res.data.rows);
         }
     }
+    const [loggedIn, setLoggedIn] = useState(false);
 
+    useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        setLoggedIn(!!token); // Nếu có token, đánh dấu là đã đăng nhập
+    }, []);
 
     return (
         <>
 
-            <Header />
+            {loggedIn ? (
+                <>
+                    <HeaderLogin />
+                </>
+            ) : (
+                <Header />
+            )
+            }
+
             <main>
 
                 <div className="our-services section-pad-t30">
@@ -230,6 +243,7 @@ const JobSeeker = () => {
 
 
             </main>
+            <Chatbot />
             <Footer />
         </>
 

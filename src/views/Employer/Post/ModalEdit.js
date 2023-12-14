@@ -90,11 +90,11 @@ const ModalEditCity = (props) => {
             <Modal
                 show={show}
                 onHide={handleClose}
-                backdrop="static"
-                keyboard={false}>
+                size="lg"
+                aria-labelledby="example-modal-sizes-title-lg">
                 <Modal.Header closeButton>
 
-                    <Modal.Title>Chỉnh sửa thành phố</Modal.Title>
+                    <Modal.Title>Chỉnh sửa bài tuyển dụng</Modal.Title>
 
                 </Modal.Header>
                 <Modal.Body>

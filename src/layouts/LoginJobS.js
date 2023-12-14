@@ -1,11 +1,13 @@
 import Header from "components/Headers/JobSeeker.js"
 import Footer from "components/Footers/JobSeeker.js"
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 import { LoginJS } from '../services/Homepage/PostService.js';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
+import Chatbot from "./Chatbot.js";
+
 const Login = (props) => {
 
     const [email, setEmail] = useState("");
@@ -22,7 +24,7 @@ const Login = (props) => {
         let res = await LoginJS(email, password);
         console.log(">>> check res: ", res);
         if (res && res.token) {
-            localStorage.setItem("token", res.token);
+            sessionStorage.setItem("token", res.token);
             navigate("/trang-chu");
         }
         else {
@@ -36,7 +38,10 @@ const Login = (props) => {
 
     return (
         <>
+
             <Header />
+
+
             <MDBContainer fluid className="p-3 my-5 h-custom">
 
                 <MDBRow>
@@ -102,6 +107,8 @@ const Login = (props) => {
                 pauseOnHover
                 theme="light"
             />
+            <Chatbot />
+            <Footer />
         </>
     );
 }

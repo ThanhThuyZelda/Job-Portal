@@ -25,12 +25,13 @@ import EmployerPost from "views/Employer/Post/EmployerPost.js";
 import EmployerCompany from "views/Employer/Company/EmployerCompany.js";
 import AddNewPost from "views/Employer/Post/AddNewPost.js";
 import Chatbot1 from "views/Employer/Chatbot1/Chatbot.js";
+import BarChart from "views/Employer/Chart/BarChart.js";
 var routes = [
   {
     path: "/index",
     name: "Thống kê",
     icon: "ni ni-tv-2 text-primary",
-    component: <Index />,
+    component: <BarChart />,
     layout: "/nha-tuyen-dung",
   },
   {

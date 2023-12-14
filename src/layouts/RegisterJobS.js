@@ -1,5 +1,6 @@
 import Header from "components/Headers/JobSeeker.js"
-import Footer from "components/Footers/JobSeeker.js"
+import Footer from "components/Footers/JobSeeker.js";
+import Chatbot from "./Chatbot";
 import React from 'react';
 import { MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 import { ToastContainer, toast } from 'react-toastify';
@@ -95,6 +96,8 @@ const Register = () => {
                 pauseOnHover
                 theme="light"
             />
+            <Chatbot />
+            <Footer />
         </>
     );
 }

@@ -24,8 +24,14 @@ slots:
     - type: from_entity
       entity: name 
 
+actions:
+  - action_default_fallback
+
 
 responses:
+  # mac dinh
+  utter_default:
+    - text: "Xin lỗi, tôi không hiểu. Có gì tôi có thể giúp bạn không?"
   #Chao
   utter_greeting:
   - text: "Chào bạn, mình là chatbot AI! Bạn muốn chatbot AI hỗ trợ bạn về điều gì ạ?

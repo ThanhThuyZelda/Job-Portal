@@ -28,7 +28,7 @@ const AdminNavbar = (props) => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/auth/admin/login");
+    navigate("/auth/login");
     toast.success("Đăng xuất thành công");
   }
   axios.defaults.withCredentials = true;
@@ -41,7 +41,8 @@ const AdminNavbar = (props) => {
           setName(res.data.fullname);
         }
         else {
-          console.log(res.data.loggedIn)
+          // console.log(res.data.loggedIn)
+          navigate("/auth/login");
         }
       })
       .catch(err => console.log(err))

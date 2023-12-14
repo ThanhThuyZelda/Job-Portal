@@ -22,8 +22,6 @@ const searchPost = (text, skillID, workform) => {
     return axios.get(`/nha-tuyen-dung/trang-chu/tim-kiem-post?text=${text}&skillID=${skillID}&workform=${workform}`);
 }
 
-
-
 // display list city
 const fetchAllCity = (page) => {
     return axios.get(`/quan-tri-vien/thanh-pho/`);
@@ -52,11 +50,13 @@ const putUpdatePost = (id, headline, salary, gender, require, des, benefit, quan
 const deletePost = (id) => {
     return axios.delete(`/nha-tuyen-dung/bai-tuyen-dung/${id}`)
 }
-
+const listCVOfPost = (postID) => {
+    return axios.get(`/nha-tuyen-dung/ds-CV/${postID}`);
+}
 
 
 
 export {
-    fetchAllPost, postCreate, fetchEmployerFromSession,
+    fetchAllPost, postCreate, fetchEmployerFromSession, listCVOfPost,
     fetchDetailPosts, deletePost, putUpdatePost, fetchAllCity, searchPost
 };

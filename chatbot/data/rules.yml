@@ -1,5 +1,6 @@
 version: "3.1"
 
+
 # rules:
 
 # - rule: Say goodbye anytime the user says goodbye
@@ -11,3 +12,51 @@ version: "3.1"
 #   steps:
 #   - intent: bot_challenge
 #   - action: utter_iamabot
+rules:
+- rule: cong_viec_luong_ca0
+
+  steps:
+  - intent: work_high_salary
+  - action: utter_work_high_salary1
+  - action: utter_work_high_salary2
+  - action: utter_work_high_salary3
+  - action: utter_work_high_salary4
+  - action: utter_work_high_salary5
+  - action: utter_work_high_salary6
+
+- rule: cv_de_xin
+  steps:
+  - intent: work_easy_apply
+  - action: utter_work_easy_apply1
+  - action: utter_work_easy_apply2
+  - action: utter_work_easy_apply3
+  - action: utter_work_easy_apply4
+
+- rule: cty_uu_dai
+  steps: 
+  - intent: company_endow
+  - action: utter_company_endow1
+  - action: utter_company_endow2
+  - action: utter_company_endow3
+  - action: utter_company_endow4
+  - action: utter_company_endow5
+
+- rule: cty_luong_cao_nhat
+  steps: 
+  - intent: company_high_salary
+  - action: utter_company_high_salary
+
+- rule: cam_on
+  steps:
+  - intent: thanks
+  - action: utter_thanks
+
+- rule: tam_biet
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: xin_chao
+  steps: 
+  - intent: greet
+  - action: utter_greeting

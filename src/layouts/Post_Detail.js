@@ -1,12 +1,15 @@
-
 import { useState, useEffect } from "react";
 import Header from "components/Headers/JobSeeker";
+import HeaderLogin from "components/Headers/JobSeekerLogined.js";
 import Footer from "components/Footers/JobSeeker";
 import Company from "./Company";
 import Post from "./Post";
+import Chatbot from "./Chatbot";
 import OtherPost from "./OtherPost";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+
+import { ToastContainer, toast } from 'react-toastify';
 import {
     Card,
     CardHeader,
@@ -20,29 +23,52 @@ import {
 import { useLocation } from "react-router-dom";
 import Apply from "layouts/Apply";
 
+
 const Post_Detail = (props) => {
     const [key, setKey] = useState('home');
 
-    const location = useLocation();
-
-
+    const location = useLocation()
     const [isShowModalApply, setIsShowModalApply] = useState(false);
     const [dataApply, setDataApply] = useState({});
 
+    // Kiem tra Header
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        setLoggedIn(!!token); // Nếu có token, đánh dấu là đã đăng nhập
+    }, []);
+
+    // Ung tuyen
 
     const handleClose = () => {
         setIsShowModalApply(false);
     }
 
     const handleApply = (post) => {
-        setIsShowModalApply(true);
-        setDataApply(post);
+        if (loggedIn) {
+            setIsShowModalApply(true);
+            setDataApply(post);
+        }
+        else {
+            toast.error('Bạn cần đăng nhập mới được nộp CV !!!');
+        }
+
     }
+
 
 
     return (
         <>
-            <Header />
+            {loggedIn ? (
+                <>
+                    <HeaderLogin />
+                </>
+            ) : (
+                <Header />
+            )
+            }
+
             <div className="slider-area ">
                 <div className="single-slider background2 slider-height2 d-flex align-items-center" >
                     <div className="container">
@@ -123,11 +149,24 @@ const Post_Detail = (props) => {
                 </Tabs>
             </div>
 
+            <Chatbot />
             < Footer />
             <Apply
                 show={isShowModalApply}
                 handleClose={handleClose}
                 dataApply={dataApply}
+            />
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
             />
         </>
     );
