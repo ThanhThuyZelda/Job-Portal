@@ -13,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       // Post.belongsTo(models.Employer, { foreignKey: 'empID' });
       Post.belongsTo(models.Company, { foreignKey: 'compID' });
       Post.belongsTo(models.City, { foreignKey: 'skillID' });
+      Post.belongsTo(models.Employer, { foreignKey: 'empID' });
+      Post.hasMany(sequelize.define('CV'));
     }
   }
   Post.init({

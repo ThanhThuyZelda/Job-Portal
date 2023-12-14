@@ -376,6 +376,142 @@ const fetchPostOfCompany = async (req, res) => {
         });
 }
 
+const fetchJSOfPost = async (req, res) => {
+    let id = req.params.postID;
+    await models.CV.findAll({
+        include: [
+            {
+                model: models.JobSeeker,
+                attributes: ['fullname'],
+                where: {
+                    id: Sequelize.col('CV.jobSeekerID'),
+                },
+
+            }
+        ],
+        where: {
+            postID: id
+        }
+
+    })
+        .then(result => {
+            res.status(201).json({
+                // Post created successfully
+                message: "Post dislayed!",
+                cv: result
+
+            });
+        }).catch(error => {
+            res.status(500).json({
+                // Something went wrong
+                message: "Có lỗi xảy ra!",
+                error: error
+
+            });
+        });
+}
+//History Apply
+// const historyApply = async (req, res) => {
+//     let ntv = req.session.jobseeker.id;
+//     await models.CV.findAndCountAll({
+//         attributes: ['id', 'desc', 'img', 'createdAt'],
+
+//         include: [
+//             {
+//                 model: models.Post,
+//                 attributes: ['id', 'headline', 'salary', 'gender', 'require', 'des', 'benefit', 'quantity', 'skillID', 'address', 'workform', 'status', 'DeadlineSubmission', 'createdAt'],
+//                 include: [{
+//                     model: models.Company,
+//                     attributes: ['id', 'name', 'logo', 'address', 'worktime', 'country', 'description', 'website', 'scale', 'skill'],
+//                     where: {
+//                         id: Sequelize.col('Post.compID'),
+//                     },
+//                 },
+//                 {
+//                     model: models.City,
+//                     attributes: ['name'],
+//                     where: {
+//                         id: Sequelize.col('Post.skillID'),
+//                     },
+//                 },
+
+//                 ],
+//                 where: {
+//                     id: Sequelize.col('CV.postID'),
+//                 },
+//             },
+//         ],
+//         where: {
+//             jobSeekerID: ntv
+//         },
+
+//     })
+//         .then(result => {
+//             res.status(201).json({
+//                 // Post created successfully
+//                 message: "History dislayed!",
+//                 post: result
+
+//             });
+//         }).catch(error => {
+//             res.status(500).json({
+//                 // Something went wrong
+//                 message: "Something went wrong!",
+//                 error: error
+
+//             });
+//         });
+
+// }
+const historyApply = async (req, res) => {
+    let ntv = req.session.jobseeker.id;
+    await models.Post.findAndCountAll({ // Lấy tất cả cột từ bảng Posts
+        attributes: ['id', 'headline', 'salary', 'gender', 'require', 'des', 'benefit', 'quantity', 'skillID', 'address', 'workform', 'status', 'DeadlineSubmission', 'createdAt'],
+        include: [
+            {
+                model: models.CV,
+                attributes: ['id', 'desc', 'postID', 'img', 'createdAt'],
+                where: {
+                    postID: Sequelize.col('Post.id'),
+                    jobSeekerID: ntv
+                },
+            },
+            {
+                model: models.Company,
+                attributes: ['id', 'name', 'logo', 'address', 'worktime', 'country', 'description', 'website', 'scale', 'skill'],
+                where: {
+                    id: Sequelize.col('Post.compID'),
+                },
+            },
+            {
+                model: models.City,
+                attributes: ['name'],
+                where: {
+                    id: Sequelize.col('Post.skillID'),
+                },
+            },
+
+        ],
+
+
+    })
+        .then(result => {
+            res.status(201).json({
+                // Post created successfully
+                message: "Post dislayed!",
+                post: result
+
+            });
+        }).catch(error => {
+            res.status(500).json({
+                // Something went wrong
+                message: "Something went wrong!",
+                error: error
+
+            });
+        });
+
+}
 module.exports = {
     clientFetchAllPost: clientFetchAllPost,
     fetchOtherPostCompany: fetchOtherPostCompany,
@@ -383,5 +519,7 @@ module.exports = {
     Apply: Apply,
     upload: upload,
     HomeFetchPost: HomeFetchPost,
-    fetchPostOfCompany: fetchPostOfCompany
+    fetchPostOfCompany: fetchPostOfCompany,
+    fetchJSOfPost: fetchJSOfPost,
+    historyApply: historyApply
 }

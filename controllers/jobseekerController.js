@@ -50,24 +50,43 @@ const signUp = async (req, res) => {
                                 errors: validationResponse
                             });
                         }
-                        await models.JobSeeker.create(jobseeker)
-                            .then(result => {
-                                res.status(201).json({
-                                    message: "Jobseekers created successfully!"
-                                });
-                            }).catch(error => {
-                                res.status(500).json({
-                                    message: "Somethong went wrong!"
-                                });
-                            });
+                        const createdJobSeeker = await models.JobSeeker.create(jobseeker)
+                        // .then(result => {
+                        //     res.status(201).json({
+                        //         message: "Jobseekers created successfully!"
+                        //     });
+                        // }).catch(error => {
+                        //     res.status(500).json({
+                        //         message: "Somethong went wrong!"
+                        //     });
+                        // });
+
+                        const infor = await models.CVInfor.create({ JobSeekerID: createdJobSeeker.id });
+                        const edu = await models.CVEducation.create({ JobSeekerID: createdJobSeeker.id });
+                        const obj = await models.CVCareerObj.create({ JobSeekerID: createdJobSeeker.id });
+                        const cer = await models.CVCertification.create({ JobSeekerID: createdJobSeeker.id });
+                        const award = await models.CVAward.create({ JobSeekerID: createdJobSeeker.id });
+                        const interest = await models.CVInterest.create({ JobSeekerID: createdJobSeeker.id });
+                        const skill = await models.CVSkill.create({ JobSeekerID: createdJobSeeker.id });
+                        const exp = await models.CVWorkExp.create({ JobSeekerID: createdJobSeeker.id });
+                        const activity = await models.CVActivity.create({ JobSeekerID: createdJobSeeker.id });
+
+                        return res.status(201).json({
+                            message: "Jobseekers created successfully!"
+                        });
                     });
                 });
+
             }
         }).catch(error => {
             res.status(500).json({
                 message: "Something went wrong!",
             });
         });
+
+
+
+
 }
 
 //2. Login
@@ -184,6 +203,7 @@ function destroy(req, res) {
         });
     });
 }
+
 
 
 // Uploaf Image

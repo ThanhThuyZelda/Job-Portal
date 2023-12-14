@@ -3,6 +3,7 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const path = require('path');
 const multer = require('multer');
+const Sequelize = require('sequelize');
 //1. Sign Ups
 const signUp = async (req, res) => {
     const company = await models.Company.create({ name: req.body.company, address: req.body.address, website: req.body.website })
@@ -264,8 +265,120 @@ const update = async (req, res) => {
         });
     })
 }
-//8. Get company
+//8. Total POST
+const countPost = async (req, res) => {
+    let employerID = req.session.employer.id;
+    await models.Post.findAll({
+        attributes: [
+            [Sequelize.fn('COUNT', Sequelize.fn('DISTINCT', models.sequelize.col('Post.id'))), 'btd'],
+            [Sequelize.fn('SUM', Sequelize.literal('CASE WHEN status = 1 THEN 1 ELSE 0 END')), 'status1'],
+            [Sequelize.fn('SUM', Sequelize.literal('CASE WHEN status = 0 THEN 1 ELSE 0 END')), 'status0'],
+        ],
+        include: [{
+            model: models.Employer,
+            attributes: ['fullname'],
+            where: { id: employerID },
+        }],
+        raw: true,
+    }).then(result => {
+        if (result) {
+            res.status(200).json(result);
+        }
+        else {
+            res.status(404).json({
+                message: "Not found!"
+            });
+        }
+    }).catch(error => {
+        res.status(500).json({
+            message: "Đã xảy ra lỗi!"
+        }
+        )
+        console.log(error);
+    })
+}
+//9. Total CV
+const countCV = async (req, res) => {
+    let employerID = req.session.employer.id;
 
+    await models.CV.count({
+        distinct: true,
+        attributes: [],
+        include: [
+            {
+                model: models.Post,
+                include: [
+                    {
+                        model: models.Employer,
+                        where: { id: employerID },
+                    },
+                ],
+            },
+        ],
+    })
+        .then(result => {
+            if (result) {
+                res.status(200).json(
+                    { total: result }
+                );
+            }
+            else {
+                res.status(404).json({
+                    message: "Not found!"
+                });
+            }
+        }).catch(error => {
+            res.status(500).json({
+                message: "Đã xảy ra lỗi!"
+            }
+            )
+            console.log(error);
+        })
+}
+
+// 10. Total CV Each Post
+const CVEachPost = async (req, res) => {
+    await models.Post.findAll({
+        attributes: [
+            ['id', 'postID'],
+            ['headline', 'headline'],
+            [models.sequelize.fn('COALESCE', models.sequelize.fn('COUNT', models.sequelize.fn('DISTINCT', models.sequelize.col('cvs.id'))), 0), 'cvCount'],
+        ],
+        include: [
+            {
+                model: models.CV,
+                attributes: [],
+                required: false,
+                where: {},
+            },
+            {
+                model: models.Employer,
+                attributes: [],
+                where: { id: 1 },
+            },
+        ],
+        group: ['Post.id', 'Post.headline'],
+        raw: true,
+    }).then(result => {
+        if (result) {
+            res.status(200).json(
+                result
+            );
+        }
+        else {
+            res.status(404).json({
+                message: "Not found!"
+            });
+        }
+    }).catch(error => {
+        res.status(500).json({
+            message: "Đã xảy ra lỗi!"
+        }
+        )
+        console.log(error);
+    })
+
+}
 
 module.exports = {
     signUp: signUp,
@@ -274,6 +387,8 @@ module.exports = {
     show: show,
     index: index,
     destroy: destroy,
-    update: update
-
+    update: update,
+    countPost: countPost,
+    countCV: countCV,
+    CVEachPost: CVEachPost
 }

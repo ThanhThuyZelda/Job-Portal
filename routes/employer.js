@@ -35,7 +35,7 @@ router.get("/bai-tuyen-dung/:id", postsController.index);
 router.get("/trang-chu/bai-tuyen-dung/", homepageController.clientFetchAllPost);
 router.get("/trang-chu/cong-ty-post/:id", homepageController.fetchOtherPostCompany);
 router.get("/trang-chu/tim-kiem-post", homepageController.searchPost);
-
+router.get("/ds-CV/:postID", homepageController.fetchJSOfPost);
 
 router.get("/home/session", (req, res) => {
     if (req.session.employer) {
@@ -116,5 +116,11 @@ router.get("/home/companyID", async (req, res) => {
     })
 
 })
+
+// Chart
+router.get("/total/post", employerController.countPost);
+router.get("/total/CV", employerController.countCV);
+router.get("/total/CVEachPost", employerController.CVEachPost);
+
 
 module.exports = router;
