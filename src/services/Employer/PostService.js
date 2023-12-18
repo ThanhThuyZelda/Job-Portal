@@ -56,6 +56,8 @@ const listCVOfPost = (postID) => {
 
 
 
+
+
 export {
     fetchAllPost, postCreate, fetchEmployerFromSession, listCVOfPost,
     fetchDetailPosts, deletePost, putUpdatePost, fetchAllCity, searchPost

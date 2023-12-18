@@ -62,7 +62,7 @@ const ListCV = (props) => {
                                 <th scope="col">Họ và tên</th>
                                 <th scope="col">CV</th>
                                 <th scope="col">Mô tả</th>
-                                <th scope="col">Trạng thái</th>
+                                {/* <th scope="col">Trạng thái</th> */}
                             </tr>
                         </thead>
                         <tbody>
@@ -93,9 +93,9 @@ const ListCV = (props) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Đóng
                     </Button>
-                    <Button variant="primary" >
+                    {/* <Button variant="primary" >
                         Cập nhật
-                    </Button>
+                    </Button> */}
                 </Modal.Footer>
             </Modal >
 

@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import 'assets/css/chatbot.css';
 
-
+import 'assets/template_CV/assets/css/pillar-1.css';
 import 'assets/template_ntv/css/style.css';
 import 'assets/template_ntv/css/bootstrap.min.css';
 import 'assets/template_ntv/css/flaticon.css';
@@ -23,6 +23,8 @@ import 'assets/template_ntv/css/fontawesome-all.min.css';
 import 'assets/template_ntv/css/themify-icons.css';
 import 'assets/template_ntv/css/slick.css';
 import 'assets/template_ntv/css/nice-select.css';
+//=============================================================================
+
 
 //======================Call template JS JobSeeker=========================================
 
@@ -44,6 +46,7 @@ import Login from "layouts/LoginJobS";
 import DetailCompany from "layouts/DetailCompany.js";
 import InforJobSeeker from "layouts/InforJobSeeker.js";
 import HistoryJS from "layouts/HistoryJobSeeker.js";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

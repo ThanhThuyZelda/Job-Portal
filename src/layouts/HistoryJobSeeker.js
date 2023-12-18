@@ -46,7 +46,7 @@ const HistoryJobSeeker = () => {
                     <div class="col-lg-12">
                         <div class="section-tittle text-center">
                             {count > 0 ? (
-                                <h2>Việc làm đã ứng tuyển ({count}) </h2>
+                                <h2>Việc làm đã ứng tuyển ({listPostApply.length}) </h2>
                             ) : (
                                 <h2>Bạn chưa ứng tuyển việc làm nào </h2>
                             )
@@ -120,11 +120,7 @@ const HistoryJobSeeker = () => {
 
                                             </li>
                                         </ul>
-
                                     </div>
-
-
-
                                     <div class="items-link f-right">
                                         <a
                                             onClick={() => handleDetailPost(item)}

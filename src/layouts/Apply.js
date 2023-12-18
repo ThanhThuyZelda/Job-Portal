@@ -10,6 +10,7 @@ const Apply = (props) => {
     const [postID, setPostID] = useState();
     const [jobseekerID, setJobseekerID] = useState();
     const [name, setName] = useState();
+    const [email, setEmail] = useState();
     const [desc, setDesc] = useState();
     const [img, setImg] = useState();
 
@@ -22,10 +23,11 @@ const Apply = (props) => {
     useEffect(() => {
         axios.get('http://localhost:8080/nguoi-tim-viec/home/session')
             .then(res => {
-
+                // console.log(res.data.jobseeker.email);
                 if (res.data.loggedIn) {
                     setJobseekerID(res.data.jobseeker.id);
                     setName(res.data.jobseeker.fullname);
+                    setEmail(res.data.jobseeker.email);
                 }
                 else {
                     toast.error("Phiên làm việc đã hết hạn. Bạn cần đăng nhập lại!!!");
@@ -44,13 +46,14 @@ const Apply = (props) => {
 
     }, [dataApply])
 
+
+
     const handleSaveCV = async () => {
         if (!img) {
             toast.error("Bạn cần upload CV của mình!!")
         }
         else {
             let res = await applyCV(img, desc, jobseekerID, postID);
-            console.log(res);
             if (res) {
                 handleClose();
                 toast.success("Bạn đã nộp CV thành công!!");
@@ -59,6 +62,7 @@ const Apply = (props) => {
                 toast.error("Có lỗi xảy ra!!");
             }
         }
+
 
     }
 
@@ -90,7 +94,7 @@ const Apply = (props) => {
                                 Upload CV của bạn <span style={{ color: "red" }}>*</span> </label>
                             <p>     Hỗ trợ định dạng .doc .docx .pdf</p>
                             <input type="file" className="form-control "
-                                value={img}
+                                // value={img}
                                 onChange={(event) => setImg(event.target.files[0])}
                             />
                         </div>
@@ -104,7 +108,9 @@ const Apply = (props) => {
                                 value={desc}
                                 onChange={(event) => setDesc(event.target.value)}
                             />
+
                         </div>
+
                     </div>
                 </Modal.Body>
                 <Modal.Footer>

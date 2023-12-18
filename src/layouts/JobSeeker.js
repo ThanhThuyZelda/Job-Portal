@@ -44,7 +44,11 @@ const JobSeeker = () => {
         const token = sessionStorage.getItem('token');
         setLoggedIn(!!token); // Nếu có token, đánh dấu là đã đăng nhập
     }, []);
+    const handleDetailCompany = (company) => {
+        navigate('/ds-cong-ty/chi-tiet-cong-ty/',
+            { replace: true, state: company });
 
+    }
     return (
         <>
 
@@ -87,7 +91,7 @@ const JobSeeker = () => {
                                                         alt="" />
                                                 </div>
                                                 <div className="services-cap">
-                                                    <h5><a href="job_listing.html">{item.name}</a></h5>
+                                                    <h5><a onClick={() => handleDetailCompany(item)}>{item.name}</a></h5>
                                                 </div>
                                             </div>
                                         </div>

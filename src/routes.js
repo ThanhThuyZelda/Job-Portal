@@ -30,13 +30,13 @@ import AdminLogin from "views/Admin/Login Signup Logout/AdminLogin.js";
 
 
 var routes = [
-  {
-    path: "/index",
-    name: "Thống kê",
-    icon: "ni ni-tv-2 text-primary",
-    component: <Index />,
-    layout: "/admin",
-  },
+  // {
+  //   path: "/index",
+  //   name: "Thống kê",
+  //   icon: "ni ni-tv-2 text-primary",
+  //   component: <Index />,
+  //   layout: "/admin",
+  // },
   {
     path: "/nha-tuyen-dung",
     name: "Danh sách nhà tuyển dụng",
@@ -58,13 +58,13 @@ var routes = [
     component: <AdminCity />,
     layout: "/admin",
   },
-  {
-    path: "/vi-tri",
-    name: "Danh sách vị trí",
-    icon: "ni ni-ungroup",
-    component: <AdminPostion />,
-    layout: "/admin",
-  },
+  // {
+  //   path: "/vi-tri",
+  //   name: "Danh sách vị trí",
+  //   icon: "ni ni-ungroup",
+  //   component: <AdminPostion />,
+  //   layout: "/admin",
+  // },
   {
     path: "/ky-nang",
     name: "Danh sách kỹ năng",

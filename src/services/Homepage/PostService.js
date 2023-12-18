@@ -1,3 +1,4 @@
+import { post } from 'jquery';
 import axios from '../customize-axios';
 
 // Add a response interceptor
@@ -119,7 +120,12 @@ const updateCVExp = (id, position, company, start, end, present, des) => {
     return axios.put(`/nguoi-tim-viec/CV-exp/${id}`, { position, company, start, end, present, des });
 }
 
-
+const printCVPDF = () => {
+    return axios.get('/nguoi-tim-viec/fetch/viewFullCV');
+}
+const exportCVPDF = (html) => {
+    return axios.post('/nguoi-tim-viec/fetch/export-pdf', { html })
+}
 
 export {
     fetchAllPost, fetchOtherPostCompany, RegisterJS, LoginJS,
@@ -128,5 +134,6 @@ export {
     fetchCVInfor, updateCVInfor, fetchCVObj, updateCVObj,
     fetchCVEdu, createCVEdu, deleteCVEdu, updateCVEdu,
     fetchCVSkill, createCVSkill, deleteCVSkill, updateCVSkill,
-    fetchCVExp, createCVExp, deleteCVExp, updateCVExp
+    fetchCVExp, createCVExp, deleteCVExp, updateCVExp,
+    printCVPDF, exportCVPDF
 };

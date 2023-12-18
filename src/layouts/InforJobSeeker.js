@@ -1,10 +1,11 @@
 import Header from "components/Headers/JobSeekerLogined.js"
 import Footer from "components/Footers/JobSeeker.js"
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
     fetchCVInfor, fetchCVObj, fetchCVEdu, deleteCVEdu,
     fetchCVSkill, deleteCVSkill,
-    fetchCVExp, deleteCVExp
+    fetchCVExp, deleteCVExp,
+    printCVPDF, exportCVPDF
 
 } from '../services/Homepage/PostService.js';
 import { useState } from "react";
@@ -20,9 +21,8 @@ import ModalCreateCVSkill from "./ModalCreateCVSkill.js";
 import ModalUpdateCVSkill from "./ModalUpdateCVSkill.js";
 import ModalCreateCVExp from "./ModalCreateCVExp.js";
 import ModalUpdateCVExp from "./ModalUpdateCVExp.js";
-
-
-import { faL } from "@fortawesome/free-solid-svg-icons";
+import { useReactToPrint } from "react-to-print";
+import ExportPDF from "./ExportPDF.js";
 
 const InforJobSeeker = () => {
 
@@ -209,7 +209,36 @@ const InforJobSeeker = () => {
         fetchEdu();
         fetchSkill();
         fetchExp();
+        fetchDataCV();
     }, [])
+
+
+    //PDF CV
+    const [cvData, setCVData] = useState({});
+    const [pdfUrl, setPdfUrl] = useState('');
+
+    const fetchDataCV = async () => {
+        let res = await printCVPDF();
+        if (res && res.data) {
+            setCVData(res.data);
+        }
+    }
+
+    // const handleExportPDF = async () => {
+    //     const html = `<div>${JSON.stringify(cvData)}</div>`;
+    //     let res = await exportCVPDF(html);
+    //     const blob = new Blob([res.data], { type: 'application/pdf' });
+    //     const url = URL.createObjectURL(blob);
+    //     setPdfUrl(url);
+
+    //     // Open the PDF in a new tab
+    //     window.open(url, '_blank');
+    const conponentPDF = useRef();
+    const generatePDF = useReactToPrint({
+        content: () => conponentPDF.current,
+        documentTitle: "Userdata",
+        onAfterPrint: () => alert("Data saved in PDF")
+    });
 
 
     return (
@@ -221,42 +250,22 @@ const InforJobSeeker = () => {
                         <div class="col-lg-4">
                             <div class="blog_right_sidebar">
 
-                                <aside class="single_sidebar_widget post_category_widget" style={{ background: "#e8e7ea" }}>
-                                    <h4 class="widget_title">Category</h4>
+                                <aside class="single_sidebar_widget post_category_widget" style={{ background: "" }}>
+                                    <h4 class="widget_title" style={{ color: "green" }}><i class="fa-solid fa-download"></i> Bạn có thể xem và tải CV bên dưới</h4>
                                     <ul class="list cat-list">
                                         <li>
-                                            <button className="btn head-btn1">Xem và tải CV</button>
+                                            <button className="btn head-btn1"
+                                                onClick={generatePDF}
+                                            >Xem và tải CV</button>
+
                                         </li>
-                                        <li>
-                                            <a href="#" class="d-flex">
-                                                <p>Travel news</p>
-                                                <p>(10)</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="d-flex">
-                                                <p>Modern technology</p>
-                                                <p>(03)</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="d-flex">
-                                                <p>Product</p>
-                                                <p>(11)</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="d-flex">
-                                                <p>Inspiration</p>
-                                                <p>(21)</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="d-flex">
-                                                <p>Health Care</p>
-                                                <p>(21)</p>
-                                            </a>
-                                        </li>
+                                        <div style={{ display: "none" }}>
+                                            <div ref={conponentPDF} style={{ width: '100%' }}>
+                                                <ExportPDF />
+
+                                            </div>
+                                        </div>
+
                                     </ul>
                                 </aside>
 
