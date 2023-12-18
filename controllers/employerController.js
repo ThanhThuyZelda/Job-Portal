@@ -3,7 +3,7 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const path = require('path');
 const multer = require('multer');
-const Sequelize = require('sequelize');
+const { Op, Sequelize } = require('sequelize');
 //1. Sign Ups
 const signUp = async (req, res) => {
     const company = await models.Company.create({ name: req.body.company, address: req.body.address, website: req.body.website })
@@ -307,14 +307,18 @@ const countCV = async (req, res) => {
         include: [
             {
                 model: models.Post,
-                include: [
-                    {
-                        model: models.Employer,
-                        where: { id: employerID },
+                attributes: [],
+                where: {
+                    id: Sequelize.col('CV.postID'),
+                    [Op.and]: {
+                        empID: employerID,
                     },
-                ],
+                },
+
+
             },
         ],
+        // where: { jobSeekerID: employerID },
     })
         .then(result => {
             if (result) {
@@ -338,6 +342,7 @@ const countCV = async (req, res) => {
 
 // 10. Total CV Each Post
 const CVEachPost = async (req, res) => {
+    let employerID = req.session.employer.id;
     await models.Post.findAll({
         attributes: [
             ['id', 'postID'],
@@ -354,7 +359,7 @@ const CVEachPost = async (req, res) => {
             {
                 model: models.Employer,
                 attributes: [],
-                where: { id: 1 },
+                where: { id: employerID },
             },
         ],
         group: ['Post.id', 'Post.headline'],

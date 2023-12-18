@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
+const nodemailer = require('nodemailer');
 
 const jobseekerRoute = require('./routes/jobseeker');
 const employerRoute = require('./routes/employer');

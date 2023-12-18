@@ -65,26 +65,6 @@ router.get("/home/session", (req, res) => {
 
 
 router.get("/fetch/viewFullCV", CVController.viewFullCV);
-router.post("/fetch/export-pdf", async (req, res) => {
-    const { html } = req.body;
-    try {
-        const browser = await puppeteer.launch();
-        const page = await browser.newPage();
 
-        await page.setContent(html);
-
-        const pdfBuffer = await page.pdf({ format: 'A4' });
-
-        await browser.close();
-
-        res.status(200).contentType('application/pdf').send(pdfBuffer);
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({
-            message: 'An error occurred while generating the PDF.',
-            error: error.message,
-        });
-    }
-})
 
 module.exports = router;
